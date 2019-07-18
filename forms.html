@@ -20,23 +20,29 @@
             <header>
                 <h2>Register with us</h2>
             </header>
-            <label for="email">Enter email</label>
+            <label for="email">Email: </label>
             <input type="text" id="email" name="email" placeholder="Enter email">
             <br>
-            <label for="password">Enter password</label>
+
+            <label for="password">Password: </label>
             <input type="password" id="password" name="password" placeholder="Enter password">
         </section>
+        <br>
+
         <!-- Bio section -->
         <section>
             <header>
-                <h2>Bio</h2>
+                <label for="bio">Bio</label>
+                <br>
                 <textarea name="bio" id="bio" cols="30" rows="10" placeholder="Tell us about yourself"></textarea>
             </header>
         </section>
+        <br>
+
         <!-- How did you hear about us -->
         <section>
             <header>
-                <h2>How did you hear about us?</h2>
+                <label for="bio">How did you hear about us?</label>
             </header>
             <input type="checkbox" name="chkRadio" value="true" id="chkRadio">
             <label for="chkRadio">radio</label>
@@ -60,8 +66,9 @@
 
         </section>
         <br>
+
         <!-- Browser type -->
-        <h2>What browser are you using?</h2>
+        <label for="browser_type">What browser are you using?</label>
         <select name="browser" id="browser_type">
             <option value="1">Chrome</option>
             <option value="2">Mozzila</option>
@@ -69,6 +76,7 @@
         </select>
         <br>
         <br>
+
         <section>
             <button type="submit">Submit</button>
         </section>
