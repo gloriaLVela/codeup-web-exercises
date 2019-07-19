@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register with Us</title>
+</head>
+<body>
+<header>
+    <h1>Veridian Dynamics</h1>
+</header>
+<main>
+    <!-- Purpose: For this exercise, we will be building a registration page for Veridian Dynamics.
+    We will be utilizing Request Inspector to view the resulting data that our form submits.
+    Throughout this exercise, you should be submitting your form and viewing the resulting data on the Request Inspector page. -->
+
+    <form method="post" action="https://www.elformo.com/forms/ffc096fd-b2ca-4939-9e6f-6a6f901feed2" target="_blank">
+        <!-- Email and password section -->
+        <section>
+            <header>
+                <h2>Register with us</h2>
+            </header>
+            <label for="email">Enter email</label>
+            <input type="text" id="email" name="email" placeholder="Enter email">
+            <br>
+            <label for="password">Enter password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password">
+        </section>
+        <!-- Bio section -->
+        <section>
+            <header>
+                <h2>Bio</h2>
+                <textarea name="bio" id="bio" cols="30" rows="10" placeholder="Tell us about yourself"></textarea>
+            </header>
+        </section>
+        <!-- How did you hear about us -->
+        <section>
+            <header>
+                <h2>How did you hear about us?</h2>
+            </header>
+            <label for="radio">radio</label>
+            <input type="radio" name="advertisement" value="radio" id="radio"><br>
+
+            <label for="billboard">billboard</label>
+            <input type="radio" name="advertisement" value="billboard" id="billboard"><br>
+
+            <label for="radio_advertisement">radio advertisement</label>
+            <input type="radio" name="advertisement" value="radio_advertisement" id ="radio_advertisement"><br>
+
+            <label for="internet_advertisement">internet advertisement</label>
+            <input type="radio" name="advertisement" value="internet_advertisement" id="internet_advertisement"><br>
+
+            <label for="other">other</label>
+            <input type="radio" name="advertisement" value="other" id="other"><br>
+
+        </section>
+        <br>
+        <!-- Browser type -->
+        <h2>What browser are you using?</h2>
+        <select name="browser" id="browser_type">
+            <option value="1">Chrome</option>
+            <option value="2">Mozzila</option>
+            <option value="3">IE</option>
+        </select>
+        <br>
+        <br>
+        <section>
+            <button type="submit">Submit</button>
+        </section>
+
+    </form>
+</main>
+</body>
+</html>
