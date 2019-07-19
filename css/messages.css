@@ -4,6 +4,10 @@ body, html {
     padding: 0;
     margin: 0;
     font-family: Arial, Ubuntu, sans-serif;
+
+}
+
+:root {
     --msg-info-bck : RGB(186,208,248);
     --msg-info-font: RGB(88,88,166);
     --message-success-background-color: RGB(213, 240, 219);
@@ -18,8 +22,10 @@ body, html {
 .message {
     padding: 5px;
     border-radius: 5px;
-    width: 60%;
-    margin: 10px auto;
+    width: calc(100% - 3em);
+    margin: 1em auto;
+    padding: .5em;
+    border: 1px solid lightgray;
 
 }
 .message-info{
