@@ -1,3 +1,32 @@
 .fancy-header {
     background-color: purple;
 }
+
+#main-header{
+    text-align: center;
+}
+
+header{
+    background-color: azure;
+    text-decoration: underline;
+}
+
+body{
+    background-image: url("../img/background_img.jpg");
+    background-color: antiquewhite;
+    font-family: Helvetica, Arial, Sans-Serif;font-family: Helvetica, Arial, Sans-Serif;
+
+}
+
+ul {
+    list-style-type: square;
+}
+
+tr {
+    padding: 20px;
+    font-size: larger;
+}
+
+td{
+    padding: 5px;
+}
