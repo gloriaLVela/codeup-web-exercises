@@ -1,32 +1,108 @@
-.fancy-header {
-    background-color: purple;
-}
+
+
+/* Center main header */
 
 #main-header{
     text-align: center;
 }
 
+/* Add a style to change the color of the headers on your page and make them underlined.*/
+/* Change the font color*/
+
 header{
-    background-color: azure;
+    background-color: lightgray;
     text-decoration: underline;
+    color: darkslategrey;
 }
+
+
+/* Add a style to change the background color of the page.*/
+/* Add a style to change the font for the entire page. Use google fonts if you would like.*/
 
 body{
-    background-image: url("../img/background_img.jpg");
+    background-image: url("../img/light-gray_background.png");
     background-color: antiquewhite;
-    font-family: Helvetica, Arial, Sans-Serif;font-family: Helvetica, Arial, Sans-Serif;
+    font-family: 'Caveat', cursive, Helvetica, Arial, Sans-Serif;
+
 
 }
+
+/*
+Add a style to change the list-style to something other than the default bullet.
+ */
 
 ul {
     list-style-type: square;
 }
 
-tr {
+
+/*
+
+Add a style to change the table, table cells td and rows tr padding and font sizes.
+ */
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 3px solid darkslategrey;
+}
+
+th {
     padding: 20px;
     font-size: larger;
+    background-color: darkcyan;
+
 }
 
 td{
     padding: 5px;
+    background-color: lightcyan;
+}
+
+/*Add a style to add a background image to your background.
+Search how to manipulate the position, sizing of this background image.*/
+
+.hero {
+    /*z-index: 1;*/
+    background-image: url("../img/light-gray_background.png");
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    /*opacity: 0.6;*/
+}
+
+img {
+    opacity: 0.5;
+    border-radius: 8px;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    transform: rotate(20deg);
+    padding: 5px;
+}
+
+/*
+Add a style to alter the anchor tags and its different states. (e.g. link, visited, hover and active).
+
+ */
+/* unvisited link (:link) */
+a:link {
+    color:red;
+}
+
+/* visited link (:visited) */
+a:visited {
+    color:black;
+}
+
+/* mouse hover over link (:hover) */
+a:hover {
+    color:blue;
+}
+
+/* active/selected link (:active) */
+a:active {
+    color:green;
 }
