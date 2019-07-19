@@ -1,0 +1,52 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Ubuntu, sans-serif;
+    --msg-info-bck : RGB(186,208,248);
+    --msg-info-font: RGB(88,88,166);
+    --message-success-background-color: RGB(213, 240, 219);
+    --message-success-color: RGB(84,136,96);
+    --message-warning-background-color: RGB(247, 246, 202);
+    --message-warning-color: RGB(146,130,53);
+    --message-error-background-color: RGB(242, 211, 214);
+    --message-error-color: RGB(138,60,75);
+
+}
+
+.message {
+    padding: 5px;
+    border-radius: 5px;
+    width: 60%;
+    margin: 10px auto;
+
+}
+.message-info{
+    /*background-color: RGB(186,208,248);*/
+    /*color: RGB(88,88,166);*/
+    background-color: var(--msg-info-bck);
+    color: var(--msg-info-font);
+
+}
+.message-success{
+    /*background-color: RGB(213, 240, 219);*/
+    /*color: RGB(84,136,96);*/
+    background-color: var(--message-success-background-color);
+    color: var(--message-success-color);
+
+}
+.message-warning{
+    /*background-color: RGB(247, 246, 202);*/
+    /*color: RGB(146,130,53);*/
+    background-color: var(--message-warning-background-color);
+    color: var(--message-warning-color);
+
+}
+.message-error{
+    /*background-color: RGB(242, 211, 214);*/
+    /*color: RGB(138,60,75);*/
+    background-color: var(--message-error-background-color);
+    color: var(--message-error-color);
+
+}
