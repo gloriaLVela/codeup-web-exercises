@@ -67,6 +67,7 @@ a {
 
 .profile-items{
     list-style-type: none;
+    padding: 0;
 
 }
 
@@ -95,14 +96,13 @@ a {
 }
 
 .container{
-    margin: 2em;
+    margin-top: 2em;
 }
 
 .media{
     width:100%;
     background: var(--light-bg);
-    border-color: var(--separator-color);
-    border-bottom-width: 1px;
+    border-bottom: 1px solid var(--separator-color);
     padding: .5em;
     overflow: auto;
 
