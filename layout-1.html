@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid Fundamentals</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            text-align: center;
+        }
+
+
+        .wrapper {
+            display: grid;
+            width: 100%;
+            height: 100vh;
+            grid-template-rows: 1fr 5fr 1fr;
+            grid-template-columns: 1fr 60% 1fr;
+            grid-template-areas:
+                    "header header header "
+                    " nav article ads "
+                    " nav footer footer ";
+            grid-row-gap: .5em;
+            grid-column-gap: .5em;
+        }
+
+        .header {
+            grid-area: header;
+            background: #FFD700;
+        }
+        .nav{
+            grid-area: nav;
+            background: #FFD700;
+        }
+        .article {
+            grid-area: article;
+            background: #FFD700;
+        }
+        .ads {
+            grid-area: ads;
+            background: #FFD700;
+        }
+        .footer {
+            grid-area: footer;
+            background: #FFD700;
+        }
+    </style>
+</head>
+<body>
+<main class="wrapper">
+    <div class="header">Header</div>
+    <div class="article">Article</div>
+    <div class="ads">Ads</div>
+    <div class="nav">Nav</div>
+    <div class="footer">Footer</div>
+</main>
+</body>
+</html>
