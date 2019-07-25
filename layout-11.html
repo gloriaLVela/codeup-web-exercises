@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid Fundamentals</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            text-align: center;
+        }
+
+
+        .wrapper {
+            display: grid;
+            width: 100%;
+            height: 100vh;
+            grid-template-rows: repeat(5, 1fr);
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-areas:
+                    "one one  one one"
+                    " two three four four "
+                    " two five five six "
+        "two seven eight nine"
+        "two ten ten ten";
+            grid-row-gap: .5em;
+            grid-column-gap: .5em;
+        }
+
+        .one {
+            grid-area: one;
+            background: #FFD700;
+        }
+        .two{
+            grid-area: two;
+            background: #FFD700;
+        }
+        .three {
+            grid-area: three;
+            background: #FFD700;
+        }
+        .four {
+            grid-area: four;
+            background: #FFD700;
+        }
+        .five {
+            grid-area: five;
+            background: #FFD700;
+        }
+        .six {
+            grid-area: six;
+            background: #FFD700;
+        }
+        .seven{
+            grid-area: seven;
+            background: #FFD700;
+        }
+        .eight {
+            grid-area: eight;
+            background: #FFD700;
+        }
+        .nine {
+            grid-area: nine;
+            background: #FFD700;
+        }
+        .ten {
+            grid-area: ten;
+            background: #FFD700;
+        }
+    </style>
+</head>
+<body>
+<main class="wrapper">
+    <div class="one">1</div>
+    <div class="two">2</div>
+    <div class="three">3</div>
+    <div class="four">4</div>
+    <div class="five">5</div>
+    <div class="six">6</div>
+    <div class="seven">7</div>
+    <div class="eight">8</div>
+    <div class="nine">9</div>
+    <div class="ten">10</div>
+</main>
+</body>
+</html>
