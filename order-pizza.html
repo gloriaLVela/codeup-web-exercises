@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pizza</title>
+    <script src="https://kit.fontawesome.com/068546a344.js"></script>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Your custom styles go here -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+<!-- Main page content -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pizza World <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Order online</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Zip Code" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 zip-code-search-button" type="submit">Search
+                        stores near you
+                    </button>
+                </form>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <i class="fas fa-user"></i>
+            <button class="btn btn-outline-success my-2 my-sm-0 zip-code-search-button" type="submit">Sign up</button>
+        </form>
+    </div>
+</nav>
+
+<!-- Jumbotron-->
+<div class="container">
+    <div class="jumbotron jumbotron-cover-image">
+        <div class="container">
+            <h1>Welcome to Pizza World!</h1>
+            <p>...</p>
+        </div>
+    </div>
+</div>
+<!-- /Jumbotron -->
+<h2> Build your own pizza</h2>
+<form>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="badge badge-primary badge-pill">1</span> Size and crust</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="badge badge-primary badge-pill">2</span>Cheese and sauce</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="badge badge-primary badge-pill">3</span>Toppings</a>
+        </li>
+
+    </ul>
+    <!-- Size and Crust -->
+    <div class="card" style="width: 100%;">
+        <h5 class="card text-white bg-primary mb-3 card-header">Choose size and crust</h5>
+        <div class="card-body">
+
+            <div class="card" style="width: 100%;">
+                <h5 class="card-header">Hand tossed</h5>
+                <div class="card-body">
+                    <p class="card-text">Buttery.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <input type="radio" aria-label="Radio button for following text input" name="rdoHandTossed"
+                                   id="smallHandTossed">
+                            <label for="smallHandTossed">Small (10")</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input type="radio" aria-label="Radio button for following text input" name="rdoHandTossed"
+                                   id="mediumHandTossed">
+                            <label for="mediumHandTossed">Medium (12")</label>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="card" style="width: 100%;">
+                <h5 class="card-header">Crispy thin</h5>
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
+                                   id="smallCrispyThin">
+                            <label for="smallCrispyThin">Small (10")</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
+                                   id="mediumCrispyThin">
+                            <label for="mediumCrispyThin">Medium (12")</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-footer text-muted text-right">
+            <a href="#" class="btn btn-primary">Next</a>
+        </div>
+    </div>
+    <!-- Cheese and Sauce -->
+    <div class="card" style="width: 100%;">
+        <h5 class="card text-white bg-primary mb-3 card-header">Cheese and Sauce</h5>
+        <div class="card-body">
+<!-- Cheese -->
+            <div class="card" style="width: 100%;">
+                <h5 class="card-header">Cheese</h5>
+                <div class="card-body">
+                    <p class="card-text">How much?</p>
+
+                    <select class="custom-select">
+                        <option selected>Light</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Extra</option>
+                        <option value="3">Double</option>
+                    </select>
+
+                </div>
+            </div>
+            <!-- Sauce -->
+            <div class="card" style="width: 100%;">
+                <h5 class="card-header">Sauce</h5>
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
+                                   id="smallCrispyThin">
+                            <label for="smallCrispyThin">Small (10")</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
+                                   id="mediumCrispyThin">
+                            <label for="mediumCrispyThin">Medium (12")</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-footer text-muted text-right">
+            <a href="#" class="btn btn-primary">Next</a>
+        </div>
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+<!-- Your custom JS goes here -->
+</body>
+</html>
