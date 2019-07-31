@@ -80,7 +80,7 @@
             <div class="card" style="width: 100%;">
                 <h5 class="card-header">Hand tossed</h5>
                 <div class="card-body">
-                    <p class="card-text">Buttery.</p>
+                    <p class="card-text">Garlic-seasoned crust with a rich, buttery taste.</p>
                     <ul class="list-group">
                         <li class="list-group-item">
                             <input type="radio" aria-label="Radio button for following text input" name="rdoHandTossed"
@@ -97,21 +97,21 @@
                 </div>
             </div>
             <div class="card" style="width: 100%;">
-                <h5 class="card-header">Crispy thin</h5>
+                <h5 class="card-header">Crispy thin crust</h5>
                 <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <p class="card-text">Thin enough for the optimum crispy to crunchy ratio.</p>
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
-                                   id="smallCrispyThin">
-                            <label for="smallCrispyThin">Small (10")</label>
-                        </li>
                         <li class="list-group-item">
                             <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
                                    id="mediumCrispyThin">
                             <label for="mediumCrispyThin">Medium (12")</label>
                         </li>
+                        <li class="list-group-item">
+                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
+                                   id="largeCrispyThin">
+                           <label for="largeCrispyThin">Large (14")</label>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -122,52 +122,149 @@
             <a href="#" class="btn btn-primary">Next</a>
         </div>
     </div>
+
     <!-- Cheese and Sauce -->
     <div class="card" style="width: 100%;">
         <h5 class="card text-white bg-primary mb-3 card-header">Cheese and Sauce</h5>
         <div class="card-body">
-<!-- Cheese -->
+            <!-- Cheese -->
             <div class="card" style="width: 100%;">
                 <h5 class="card-header">Cheese</h5>
-                <div class="card-body">
-                    <p class="card-text">How much?</p>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <p class="card-text">How much?</p>
 
-                    <select class="custom-select">
-                        <option selected>Light</option>
-                        <option value="1">Normal</option>
-                        <option value="2">Extra</option>
-                        <option value="3">Double</option>
-                    </select>
+                        <select class="custom-select">
+                            <option selected value="0">Light</option>
+                            <option value="1">Normal</option>
+                            <option value="2">Extra</option>
+                            <option value="3">Double</option>
+                        </select>
 
+                    </div>
                 </div>
+                <!-- Sauce -->
+                <div class="card" style="width: 100%;">
+                    <h5 class="card-header">Sauce</h5>
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <p class="card-text">What type?</p>
+
+                            <select class="custom-select">
+                                <option selected value="1">Tomato sauce</option>
+                                <option value="2">Marinara sauce</option>
+                                <option value="3">Double</option>
+                            </select>
+
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">How much?</p>
+                            <select class="custom-select">
+                                <option selected value="1">Light</option>
+                                <option value="2">Normal</option>
+                                <option value="3">Extra</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-right">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-caret-left"></i> Previous Step</a>
+                    <a href="#" class="btn btn-primary">Next Step <i class="fas fa-caret-right"></i></a>
+                </div>
+
             </div>
-            <!-- Sauce -->
+        </div>
+
+    <!-- Choose Toppings -->
+    <div class="card" style="width: 100%;">
+        <h5 class="card text-white bg-primary mb-3 card-header">Cheese and Sauce</h5>
+        <div class="card-body">
+            <!-- Meats -->
             <div class="card" style="width: 100%;">
-                <h5 class="card-header">Sauce</h5>
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
-                                   id="smallCrispyThin">
-                            <label for="smallCrispyThin">Small (10")</label>
-                        </li>
-                        <li class="list-group-item">
-                            <input type="radio" aria-label="Radio button for following text input" name="rdoCrispyThin"
-                                   id="mediumCrispyThin">
-                            <label for="mediumCrispyThin">Medium (12")</label>
-                        </li>
-                    </ul>
+                <h5 class="card-header">Choose Meats</h5>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input type="checkbox"
+                                       aria-label="Radio button for following text input"
+                                       name="chkBeef"
+                                       id="chkBeef">
+                                <label for="chkBeef">Beef</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox"
+                                       aria-label="Radio button for following text input"
+                                       name="chkHam"
+                                       id="chkHam">
+                                <label for="chkHam">Ham</label>
+
+                            <li class="list-group-item">
+                                <input type="checkbox"
+                                       aria-label="Radio button for following text input"
+                                       name="chkPhillySteak"
+                                       id="chkPhillySteak">
+                                <label for="chkPhillySteak">Philly Steak</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox"
+                                       aria-label="Radio button for following text input"
+                                       name="chkBacon"
+                                       id="chkBacon">
+                                <label for="chkBacon">Bacon</label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <!-- Choose Non-Meats -->
+                <div class="card" style="width: 100%;">
+                    <h5 class="card-header">Choose Non-Meats</h5>
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input type="checkbox"
+                                           aria-label="Radio button for following text input"
+                                           name="chkGreenPeppers"
+                                           id="chkGreenPeppers">
+                                    <label for="chkGreenPeppers">Green Peppers</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input type="checkbox"
+                                           aria-label="Radio button for following text input"
+                                           name="chkMushrooms"
+                                           id="chkMushrooms">
+                                    <label for="chkMushrooms">Mushrooms</label>
+
+                                <li class="list-group-item">
+                                    <input type="checkbox"
+                                           aria-label="Radio button for following text input"
+                                           name="chkOnions"
+                                           id="chkOnions">
+                                    <label for="chkOnions">Onions</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input type="checkbox"
+                                           aria-label="Radio button for following text input"
+                                           name="chkJalapeñoPeppers"
+                                           id="chkJalapeñoPeppers">
+                                    <label for="chkJalapeñoPeppers">Jalapeño Peppers</label>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card-footer text-muted text-right">
+                    <a href="#" class="btn btn-primary">Checkout <i
+                            class="fas fa-shopping-cart"></i></a>
+                </div>
+
             </div>
-
-
         </div>
-        <div class="card-footer text-muted text-right">
-            <a href="#" class="btn btn-primary">Next</a>
-        </div>
-    </div>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
