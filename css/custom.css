@@ -38,9 +38,10 @@ nav .nav-link:active{
 
 
 .jumbotron h1{
-    text-align: center;
+    /*text-align: center;*/
     /* Transparent white background */
-    background-color: rgba(255, 255, 255, 0.5);
+    /*background-color: rgba(255, 255, 255, 0.5);*/
+    opacity: .7;
 }
 
 /*.jumbotron-cover-image {*/
@@ -53,8 +54,8 @@ nav .nav-link:active{
 /*}*/
 
 
-/*@media screen and (min-width: 375px) {*/
-/*    .jumbotron{*/
-/*        display: none;*/
-/*    }*/
-/*}*/
+@media screen and (max-width: 500px) {
+    .jumbotron{
+        display: none;
+    }
+}
