@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inline JS</title>
+</head>
+<body>
+<script>
+    // JavaScript code goes here
+    // 1. create a 'functions-exercise' branch
+    // 2. create a HTML file with inline JS to solve the below problems called mini-function-exercises.html
+
+    // ===== MINI PROBLEMS
+
+    // Write a function, returnFive, that returns the number five. No inputs should be defined.
+
+    // You have to write a function that returns the number five
+
+    // pieces of data
+
+    // name of function is "returnFive"
+    // no inputs
+    // output is returns the value of five
+
+    function returnFive() {
+        return 5;
+    }
+
+    console.log(returnFive());
+
+
+    // Write a function, isFive, that takes in an input and returns the boolean value true if the passed argument is the number 5 or the string "5".
+    // Return false otherwise.
+
+    function isFive(pValue) {
+        return (pValue == 5) ? true : false;
+    }
+
+
+    console.log("return 5 " + isFive(5));
+    console.log("return '5' " + isFive('5'));
+    console.log("return 4 " + isFive(4));
+
+    // Write a function, isShortWord, that takes in a string and returns the boolean value true if the passed argument is shorter than 5 characters.
+    // Return false otherwise.
+
+    function  isShortWord(pValue){
+        return (pValue.length < 5) ? true : false;
+    }
+
+
+    console.log("Parangaritimiricuaro is a short word" + isShortWord('Parangaritimiricuaro'));
+    console.log("Home is a short word " + isShortWord('Home'));
+
+
+    // Write a function, isSameLength, that takes in two string inputs and
+    // returns the boolean value true if the passed arguments are the same length. Return false otherwise.
+
+    function isSameLength(pValue1, pValue2){
+        return (pValue1.length == pValue2.length)?true:false;
+    }
+
+    console.log("Home and Casa are the same length " + isSameLength('Home', 'Casa'));
+    console.log("Home and Hogar are the same length " + isSameLength('Home', 'Hogar'));
+
+
+    // Write a function, getSmallerSegment, that takes in a string and a number input.
+    // The function should return a substring of the first argument that is as many characters long as the second argument in lowercase.
+
+    function getSmallerSegment(pLine, pTotalChars){
+        return pLine.substring(0, pTotalChars);
+    }
+
+    console.log("The fox is on the run 7 : ",getSmallerSegment("The fox is on the run", 7));
+    console.log("The fox is on the run 0 : ",getSmallerSegment("The fox is on the run", 0));
+    console.log("The fox is on the run 50 : ",getSmallerSegment("The fox is on the run", 50));
+
+</script>
+</body>
