@@ -67,7 +67,7 @@
     // The function should return a substring of the first argument that is as many characters long as the second argument in lowercase.
 
     function getSmallerSegment(pLine, pTotalChars) {
-        return pLine.substring(0, pTotalChars);
+        return pLine.substring(0, pTotalChars.toLowerCase());
     }
 
     console.log("The fox is on the run 7 : ", getSmallerSegment("The fox is on the run", 7));
