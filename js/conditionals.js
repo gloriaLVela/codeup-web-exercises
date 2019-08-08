@@ -16,6 +16,47 @@
  * Can you refactor your code to use functions?
  */
 
+function numType(num){
+    return (num%2 === 0)?'The number '+ num + ' is even': 'The number '+ num + ' is odd';
+}
+
+// console.log(10, numType(10));
+// console.log(9, numType(9));
+
+function numPlus100(num){
+    return 'The number ' + num + ' plus 100 is ' + (num + 100);
+}
+
+// console.log(5, numPlus100(5));
+// console.log(-5, numPlus100(-5));
+
+function signNum(num){
+    return (num>0)?'The number '+ num + ' is positive':'The number '+ num + ' is negative';
+}
+
+//
+// console.log(0, signNum(9));
+// console.log(-15, signNum(-15));
+
+function workNumber(){
+    if( window.confirm('Do you want to enter a number?')){
+        var num1 = prompt("Please enter a number");
+        if (isNaN(num1)){
+            alert(num1 + ' is not a number');
+        } else {
+            alert(numType(+num1));
+            alert(numPlus100(+num1));
+            alert(signNum(+num1));
+        }
+
+    } else {
+        alert('Have a nice day!');
+    }
+
+}
+
+workNumber();
+
 /* ########################################################################## */
 
 /**
@@ -34,7 +75,30 @@
  *
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
- */
+ */'blue'
+
+function analyzeColor(colorName){
+     var message = "";
+    if (colorName === 'blue') {
+        message = "blue is the color of the sky";
+    } else if (colorName === 'red'){
+        message = "Strawberries are red";
+    } else if (colorName === 'cyan'){
+        message = "I don't know anything about cyan";
+    } else {
+        message = "we should add the color " + colorName + " to the list";
+
+    }
+
+    return message;
+}
+
+console.log(('color analyzer with if else'));
+
+console.log('blue', analyzeColor('blue'));
+console.log('red', analyzeColor('red'));
+console.log('cyan', analyzeColor('cyan'));
+console.log('green', analyzeColor('green'));
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -49,10 +113,37 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * You should see a different message everytime you refresh the page
  */
 
+console.log(('Color Analyzer with random'));
+console.log(randomColor, analyzeColor(randomColor));
+
 /**
  * TODO:
  * Refactor your above function to use a switch-case statement
  */
+
+function analyzeColor(colorName){
+    var message = "";
+    switch(colorName) {
+        case "blue":
+            message = "blue is the color of the sky";
+            break;
+        case "red":
+            message = "Strawberries are red";
+            break;
+        case "cyan":
+            message = "I don't know anything about cyan";
+            break;
+        default:
+            message = "we should add the color " + colorName + " to the list";
+            break;
+    }
+
+    return message;
+}
+
+console.log(('color analyzer with switch'));
+
+console.log(randomColor, analyzeColor(randomColor));
 
 /**
  * TODO:
@@ -60,6 +151,31 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
+
+function analyzeColor(colorName){
+    var message = "";
+    switch(colorName) {
+        case "blue":
+            message = "blue is the color of the sky";
+            break;
+        case "red":
+            message = "Strawberries are red";
+            break;
+        case "cyan":
+            message = "I don't know anything about cyan";
+            break;
+        default:
+            message = "we should add the color " + colorName + " to the list";
+            break;
+    }
+
+    return message;
+}
+
+console.log(('color analyzer with prompt'));
+
+var answer = prompt('Please enter a color');
+console.log(analyzeColor(answer.toLowerCase()));
 
 /* ########################################################################## */
 
@@ -91,4 +207,34 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * price before the discount was, and what their price after the discount is.
  */
 // Generate a random number between 0 and 6
-// var luckyNumber = Math.floor(Math.random() * 6);
+var luckyNumber = Math.floor(Math.random() * 6);
+
+function calculateTotal(luckyNumber, totalAmount){
+
+    var discountAmount = 0;
+
+    switch(luckyNumber)
+    {
+        case 0: discountAmount = 0;
+        break;
+        case 1:discountAmount = totalAmount * .10;
+        break;
+        case 2: discountAmount = totalAmount * .25;
+        break;
+        case 3: discountAmount = totalAmount * .35;
+        break;
+        case 4: discountAmount = totalAmount * .50;
+        break;
+        case 5: discountAmount = totalAmount;
+        break;
+        default: discountAmount = 0;
+    }
+    return totalAmount - discountAmount;
+}
+
+console.log(calculateTotal(4, 100) , 50); // returns 50
+console.log(calculateTotal(0, 100), 100); // returns 100
+console.log(calculateTotal(5, 100), 0); // returns 0
+var amount = +prompt("Please enter the total amount");
+console.log(calculateTotal(luckyNumber, amount), ' ', amount, ' ', luckyNumber);
+
