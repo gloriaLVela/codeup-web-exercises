@@ -31,7 +31,7 @@ do {
     // Calculate the total of cones per customer
     customerCones = Math.floor(Math.random() * 5) + 1;
     // Choose the message
-    if (customerCones > allCones) {
+    if (customerCones >= allCones) {
         console.log('Can not sell you ' + customerCones + ' I only have ' + allCones + ' left');
     } else {
         console.log(customerCones + ' sold ...');
