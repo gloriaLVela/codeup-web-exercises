@@ -46,9 +46,13 @@
             if (isNaN(num1)) {
                 alert(num1 + ' is not a number');
             } else {
-                alert(numType(+num1));
-                alert(numPlus100(+num1));
-                alert(signNum(+num1));
+                var num2 =parseFloat(num1);
+                // Odd or even?
+                alert(numType(num2));
+                // Number + 100
+                alert(numPlus100(num2));
+                // Positive or negative
+                alert(signNum(num2));
             }
 
         } else {
@@ -58,6 +62,12 @@
     }
 
     workNumber();
+
+
+    /***
+     * THis is
+     *
+     */
 
     /* ########################################################################## */
 

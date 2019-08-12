@@ -82,9 +82,9 @@
         return input % 3 === 0;
 
     }
-
-    console.log(9, 'is multiple of three', isMultipleOfThree(9));
-    console.log(5, 'is multiple of three', isMultipleOfThree(5));
+    //
+    // console.log(9, 'is multiple of three', isMultipleOfThree(9));
+    // console.log(5, 'is multiple of three', isMultipleOfThree(5));
 
 // Make a function named isMultipleOfThreeAndFive(input)
 
@@ -92,16 +92,16 @@
         return isMultipleOfFive(input) && isMultipleOfThree(input);
     }
 
-    console.log(15, ' is multiple of 3 and 5 ', isMultipleOfThreeAndFive(15));
-    console.log(20, ' is multiple of 3 and 5 ', isMultipleOfThreeAndFive(20));
+    // console.log(15, ' is multiple of 3 and 5 ', isMultipleOfThreeAndFive(15));
+    // console.log(20, ' is multiple of 3 and 5 ', isMultipleOfThreeAndFive(20));
 
 // Make a function named isMultipleOf(target, n) which checks if target is evenly divisible by n
     function isMultipleOf(target, n) {
         return target % n === 0;
     }
 
-    console.log(10, 'is multiple of', 3, '?', isMultipleOf(10, 3));
-    console.log(15, 'is multiple of', 3, '?', isMultipleOf(15, 3));
+    // console.log(10, 'is multiple of', 3, '?', isMultipleOf(10, 3));
+    // console.log(15, 'is multiple of', 3, '?', isMultipleOf(15, 3));
 
 // Make a function named isTrue(boolean)
 
@@ -109,8 +109,8 @@
         return boolean == true;
     }
 
-    console.log(true, 'is true ', isTrue(true));
-    console.log(false, 'is true ', isTrue(false));
+    // console.log(true, 'is true ', isTrue(true));
+    // console.log(false, 'is true ', isTrue(false));
 
 // Make a function named isFalse(boolean)
 
@@ -118,8 +118,8 @@
         return boolean == false;
     }
 
-    console.log(true, 'is false ', isFalse(true));
-    console.log(false, 'is false ', isFalse(false));
+    // console.log(true, 'is false ', isFalse(true));
+    // console.log(false, 'is false ', isFalse(false));
 
 // Make a function named isTruthy(input), remember that values other than true will behave like true
 
@@ -139,16 +139,69 @@
         return (letter.toLowerCase()  === "a" || letter.toLowerCase() === "e" || letter.toLowerCase() === "i" || letter.toLowerCase() === "o" || letter.toLowerCase() === "u")? true: false;
     }
 
-    console.log(isVowel("a"), "a");
-    console.log(isVowel("Z"), "Z");
-    console.log(isVowel("E"), "E");
+    // console.log(isVowel("a"), "a");
+    // console.log(isVowel("Z"), "Z");
+    // console.log(isVowel("E"), "E");
+    // console.log(isVowel("1"), "1");
+    // console.log(isVowel("?"), "?");
 
 // Make a function named isConsonant(letter)
+
+    function isConsonant(letter){
+        return (letter.toLowerCase() > "a" && letter.toLowerCase() <= "z") && !isVowel(letter);
+    }
+
+    // console.log(isConsonant("a"), "a");
+    // console.log(isConsonant("B"), "B");
+    // console.log(isConsonant("1"), "1");
+
 // Make a function named isCapital(letter)
+
+    function isCapital(letter){
+        return (letter >= "A" && letter <= "Z");
+    }
+
+    // console.log(isCapital("a"), "a");
+    // console.log(isCapital("A"), "A");
+    // console.log(isCapital("B"), "B");
+    // console.log(isCapital("1"), "1");
+    // console.log(isCapital("z"), "z");
+
 // Make a function named isLowerCase(letter)
+    function isLowerCase(letter){
+        return (letter >= "a" && letter <= "z");
+    }
+
+    // console.log(isLowerCase("a"), "a");
+    // console.log(isLowerCase("B"), "B");
+    // console.log(isLowerCase("A"), "A");
+    // console.log(isLowerCase("1"), "1");
+    // console.log(isLowerCase("z"), "z");
+
 // Make a function named hasLowerCase(string) that returns if a string has any lower cased letter
+
+    function hasLowerCase(str) {
+        return (/[a-z]/.test(str));
+    }
+
+    // console.log(hasLowerCase("The fox and the hound"), true);
+    // console.log(hasLowerCase("THE ADD"), false);
+
 // Make a function named isSpace(letter) that returns if a character is a space character
+    function isSpace(input){
+        return (input === " " );
+    }
+
+    // console.log(isSpace("T"), false);
+    // console.log(isSpace(" "), true);
+    // console.log(isSpace("Q"), false);
+
+
 // Make a function named isZero(number)
+    function isZero(input){
+        if (!isNaN(parseFloat(input))) return false;
+        return parseFloat(input) === 0;
+    }
 // Make a function named notZero(input) that returns true if the input is not zero
 // Write a function named lowerCase(string)
 // Write a function named double(n) that returns a number times two
@@ -254,9 +307,70 @@
 // Create a function returnFalseMessage() that returns the string "Hey, it's false!"
 // Create a function returnMessage() that takes in a function and returns the call to the function
 // Experiment passing in different functions.
-//     Create a function, willLoginUser() that takes in a username string, password string, user age, a boolean indicating if they are an admin.
+// Create a function, willLoginUser() that takes in a username string, password string, user age, a boolean indicating if they are an admin.
 //
-//     The function will return true if the username is not the same as the password and the user is at least 18 years old. If the user is an admin, they do not have to be a certain age but the password must still not match the username.
+// The function will return true if the username is not the same as the password and the user is at least 18 years old. If the user is an admin, they do not have to be a certain age but the password must still not match the username.
+
+//
+// __
+// Write a function makeJustinMessage() that returns the string "It's Justin!" if the input to the function is the string "justin" and "It's not Justin" otherwise.
+//     If the input contains white space or numbers, return the string "INVALID INPUT".
+//     __
+// Write a function that returns a string describing the action to be taken for a given street light color input. For example, if the function input is the string "red", a message like "STOP!" could be returned from the function. Input should not be case sensitive.
+//     __
+// Create a function that simply returns an input as an output. If no input is passed to the function when it is called, return the string "no input provided."
+// __
+// Create a function that returns a unique message string for a given digit input. If the input is not a single digit, return the string "too many digits". If the input is not a number, return "invalid input". String digits like "1" or "9" are valid inputs.
+//     __
+// Create a function that prompts a user for their favorite day of the week and alerts a unique message based on the day.
+//     Catch any invalid inputs (not indicating a day of the week).
+// For each day, allow the user to enter the abbreviated day (e.g. 'Monday', 'monday', 'Mon', or 'mon')
+// __
+// Create a function that prompts the user for an input and then alerts if the input is a number or not a number.
+// - use an if/else
+// - refactor to use a ternary operator
+// __
+// Create a function that prompts a user for a season (Spring, Summer, Fall (or Autumn), Winter). The function then alerts the months available in that season and then asks the user to pick a given month. After selecting the month, alert a unique message for the month.
+// - account for any invalid user input
+// - case of input should not matter
+// - accept both abbreviations and full names of the months
+// __
+// GOLD STAR BONUS
+// Create a distance-unit-conversion application.
+//     Prompt the user for unit of measurement.
+//     Prompt the user for a value.
+//     Prompt the user for a second unit of measurement to convert to.
+//     Possibly define multiple functions to convert: inchesToFeet, feetToMiles, milesToLightYears
+// then the opposite versions: lightYearsToMiles, milesToFeet, feetToInches
+// Use these conversion functions to make the correct unit conversion
+// Potentially, you will need a large switch case to account for the possible unit conversions,
+//     i.e. what conversion functions will need to be called in and in what order.
+//     DOUBLE GOLD STAR BONUS
+//     Allow unit conversion to metric system units
+//     // Collapse
+
+
+// Heather is wanting to join an after school club. She is currently involved with another club at school, but luckily all after
+// school clubs will only meet on one day out of the week. Return an alert to Heather as to whether or not she can join another
+// club.
+//
+// Rodrigo is a chef, and needs to buy food for his restaurant. He's worked out a deal with the shop and can get his food for a
+// twenty percent discount, but the shop changes their prices from week to week. Rodrigo needs to buy tofu, lamb, and potatoes.
+
+// Return an alert to Rodrigo with his total based on how much of each item he's buying, by weight in pounds, the price of the
+// items per pound, and also inform him of the savings he's receiving from the store.
+//
+// !!! ALGEBRA HEAVY !!!
+// Jimmy wants to buy and sell some metal. If he has two and a half pounds he can smelt it into an ingot and sell back the metal
+// for triple the profit. Any metal he has, he can sell back for a thirty percent loss. Jimmy will always make an ingot if he can,
+// and will sell all of the metal he has, ingot or not. The metal Jimmy wants to smelt is priced at fifteen dollars per eight
+// ounces. Alert Jimmy with how much money he's made from selling the metal, as well as how much of it, by pounds, he was forced
+// to sell at a loss, and how many ingots he was able to sell.
+//
+// Georgia wants to run a marathon. She is able to run at a speed of 10.75 km/hr for an hour, but her speed decreases by half of
+// a mile per hour every forty-five minutes. Georgia will only ever run as slow as 1 km/hr. How long will it take for Gerogia to
+// finish her race? Return an alert saying how many hours it will take for Georgia to complete her run for a given distance, in
+// miles.
 
 
 })();
