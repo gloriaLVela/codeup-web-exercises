@@ -15,7 +15,7 @@ function isOdd(num) {
 var randomNumber; // = Math.floor(Math.random() * 200) + 20;
 
 for (var i = 0; i < 10; i++) {
-    randomNumber = Math.floor(Math.random() * 200) + 20;
+    randomNumber =  Math.floor(Math.random() * (200 - 20)) + 20; //Math.floor(Math.random() * 200) + 20;
     if (isOdd(randomNumber)) {
         console.log(randomNumber + " is odd");
     } else {
