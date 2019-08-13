@@ -63,8 +63,8 @@
 
     var numbers = [1, 2, 3, 4, 5];
 
-    function first(arrayN){
-        return arrayN[0];
+    function first(num){
+        return num[0];
     }
 
     function second(arrayN){
