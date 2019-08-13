@@ -35,9 +35,10 @@ do {
         console.log('Can not sell you ' + customerCones + ' I only have ' + allCones + ' left');
     } else {
         console.log(customerCones + ' sold ...');
+        // Reduce the total of cones
+        allCones -= customerCones;
     }
-    // Reduce the total of cones
-    allCones -= customerCones;
+
     // console.log('All cones ' + allCones);
 
 }

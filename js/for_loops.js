@@ -14,8 +14,13 @@ function isOdd(num) {
 
 var randomNumber; // = Math.floor(Math.random() * 200) + 20;
 
+<<<<<<< HEAD
 for (var i = 0; i < 10; i++) {
     randomNumber =  Math.floor(Math.random() * (200 - 20)) + 20; //Math.floor(Math.random() * 200) + 20;
+=======
+for (var i = 0; i <= 10; i++) {
+    randomNumber = Math.floor(Math.random() * 181) + 20;
+>>>>>>> loops-exercise
     if (isOdd(randomNumber)) {
         console.log(randomNumber + " is odd");
     } else {
@@ -33,6 +38,10 @@ for (var i = 1; i < 10; i++) {
     }
     console.log(str);
     str = "";
+}
+
+for (var i = 1; i <= 9; i++){
+    console.log(string(i).repeat(i));
 }
 
 for (var k = 100; k>0; k-=5){
