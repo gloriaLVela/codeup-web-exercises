@@ -30,7 +30,7 @@ var customerCones; // = Math.floor(Math.random() * 5) + 1;
 //
 
 // Total of cones to sell
-console.log('All cones ' + allCones);
+console.log('All cones -' + allCones);
 
 do {
     // Calculate the total of cones per customer

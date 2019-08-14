@@ -9,7 +9,7 @@ function isOdd(num) {
 var userInput;
 
 while (true) {
-    userInput = +prompt("Please enter an odd number between 1 and 50");
+    userInput = +prompt("Please enter an odd number between 1 and 50 ");
     if (isOdd(userInput) && (+userInput > 1 && +userInput < 50)) break;
 }
 
