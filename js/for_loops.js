@@ -1,5 +1,7 @@
 (function () {
 
+    "use strict";
+
 
     function showMultiplicationTable(input) {
         for (var i = 1; i <= 10; i++) {
