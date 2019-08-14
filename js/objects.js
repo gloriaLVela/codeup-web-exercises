@@ -132,17 +132,7 @@
      *   `showBookInfo` function.
      */
 
-    function createBook(title, author) {
-        var book = {
-            title: title,
-            author: author
 
-        };
-        return book;
-    }
-
-    // var newBook = createBook(" A Brief History of Time",
-    //     "Stephen Hawking");
 
     function createBook(title, author) {
         // Create object
