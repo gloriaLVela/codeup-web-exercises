@@ -1,3 +1,7 @@
+(function(){
+    "use strict";
+
+
 function isOdd(num) {
     return num % 2 === 1;
 }
@@ -14,7 +18,7 @@ while (!isOdd(userInput)) {
     userInput = +prompt("Please enter an odd number between 1 and 50 ");
 =======
 while (true) {
-    userInput = +prompt("Please enter an odd number between 1 and 50");
+    userInput = +prompt("Please enter an odd number between 1 and 50 ");
     if (isOdd(userInput) && (+userInput > 1 && +userInput < 50)) break;
 >>>>>>> loops-exercise
 }
@@ -41,3 +45,4 @@ shapes.forEach(function(shape) {
 });
 
 console.log('The last shape is ' + lastOne);
+})();

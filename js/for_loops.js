@@ -1,49 +1,50 @@
-function showMultiplicationTable(input) {
-    for (var i = 1; i <= 10; i++) {
-        console.log(input + ' x ' + i + ' = ' + parseFloat(input) * i);
+(function () {
+
+
+    function showMultiplicationTable(input) {
+        for (var i = 1; i <= 10; i++) {
+            console.log(input + ' x ' + i + ' = ' + parseFloat(input) * i);
+        }
     }
-}
 
-showMultiplicationTable(5)
-showMultiplicationTable(7);
+    showMultiplicationTable(5)
+    showMultiplicationTable(7);
 
-function isOdd(num) {
-    return num % 2 === 1;
-}
-
-
-var randomNumber; // = Math.floor(Math.random() * 200) + 20;
-
-<<<<<<< HEAD
-for (var i = 0; i < 10; i++) {
-    randomNumber =  Math.floor(Math.random() * (200 - 20)) + 20; //Math.floor(Math.random() * 200) + 20;
-=======
-for (var i = 0; i <= 10; i++) {
-    randomNumber = Math.floor(Math.random() * 181) + 20;
->>>>>>> loops-exercise
-    if (isOdd(randomNumber)) {
-        console.log(randomNumber + " is odd");
-    } else {
-        console.log(randomNumber + " is even");
+    function isOdd(num) {
+        return num % 2 === 1;
     }
-}
 
-var str = "";
 
-for (var i = 1; i < 10; i++) {
-    for (var j = 0; j < i; j++) {
-        str += i;
-        //console.log(i);
+    var randomNumber; // = Math.floor(Math.random() * 200) + 20;
 
+    for (var i = 0; i <= 10; i++) {
+        randomNumber = Math.floor(Math.random() * 181) + 20;
+        if (isOdd(randomNumber)) {
+            console.log(randomNumber + " is odd");
+        } else {
+            console.log(randomNumber + " is even");
+        }
     }
-    console.log(str);
-    str = "";
-}
 
-for (var i = 1; i <= 9; i++){
-    console.log(string(i).repeat(i));
-}
+    var str = "";
 
-for (var k = 100; k>0; k-=5){
-    console.log(k);
-}
+    for (var i = 1; i < 10; i++) {
+        for (var j = 0; j < i; j++) {
+            str += i;
+            //console.log(i);
+
+        }
+        console.log(str);
+        str = "";
+    }
+
+    for (var i = 1; i <= 9; i++) {
+        console.log(string(i).repeat(i));
+    }
+
+    for (var k = 100; k > 0; k -= 5) {
+        console.log(k);
+    }
+
+
+})();
