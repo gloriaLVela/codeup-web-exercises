@@ -1,3 +1,7 @@
+(function(){
+    "use strict";
+
+
 var i = 1;
 
 while (i < 65536) {
@@ -45,3 +49,5 @@ do {
 while (allCones > 0) ;
 
 console.log('Yay! I sold them all!');
+
+})();
