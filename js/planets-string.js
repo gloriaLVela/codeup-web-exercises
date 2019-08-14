@@ -28,8 +28,12 @@
 
     var planetStringBR = planetsArray.join("<BR>");
     console.log(planetStringBR);
+    document.body.innerHTML = planetStringBR;
 
-    var planetUL = "<ul><li>" + planetsArray.join("</li><li>") + "</ul>";
+
+    var planetUL = "<ul><li>" + planetsArray.join("</li><li>") + "</li></ul>";
     console.log(planetUL);
+    // console.log(planetsArray);
+    document.body.innerHTML = planetUL;
 
 })();
