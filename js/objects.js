@@ -81,9 +81,24 @@
      */
 
     var books = [
-        {title: 'The Salmon of Doubt', author: 'Douglas Adams'},
-        {title: 'Walkaway', author: 'Cory Doctorow'},
-        {title: 'A Brief History of Time', author: 'Stephen Hawking'}
+        {
+            title: 'The Salmon of Doubt', author: {
+                firstName: 'Douglas',
+                lastName: 'Adams'
+            }
+        },
+        {
+            title: 'Walkaway', author: {
+                firstName: 'Cory',
+                lastName: 'Doctorow'
+            }
+        },
+        {
+            title: 'A Brief History of Time', author: {
+                firstName: 'Stephen',
+                lastName: 'Hawking'
+            }
+        }
     ];
 
     /**
@@ -116,7 +131,7 @@
 
         console.log(" Book #" + index);
         console.log(" Title: " + book.title);
-        console.log(" Author: " + book.author);
+        console.log(" Author: " + book.author.firstName + " " + book.author.lastName);
         console.log("---");
 
     });
