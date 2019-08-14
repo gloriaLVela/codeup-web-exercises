@@ -47,7 +47,7 @@
     console.log(planets);
     // console.log(planets.toString());
 
-    console.log("Sorting the planets array.");
+    console.log("Sorting the planets array. test");
     planets.sort();
     console.log(planets);
     console.log(planets.toString());
