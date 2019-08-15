@@ -19,6 +19,9 @@ function filterNumbers(inputArray) {
 }
 
 console.log(filterNumbers(["fred", true, 5, 3]));
+// console.log("every");
+// console.log(["fred", true, 5, 3].every(typeof === "number"));
+
 /**
 
  Write a function, getOlder() that takes in array of dog objects and increases the value of each object's age property by 1.
