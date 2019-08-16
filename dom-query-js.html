@@ -14,6 +14,20 @@
     <li data-dbid="4">Item 4</li>
     <li data-dbid="5">Item 5</li>
 </ul>
+<ul>
+    <li data-dbid="11">Item 1</li>
+    <li data-dbid="12">Item 2</li>
+    <li data-dbid="13">Item 3</li>
+    <li data-dbid="14">Item 4</li>
+    <li data-dbid="15">Item 5</li>
+</ul>
+<ul>
+    <li data-dbid="1">Item 1</li>
+    <li data-dbid="2">Item 2</li>
+    <li data-dbid="3">Item 3</li>
+    <li data-dbid="4">Item 4</li>
+    <li data-dbid="5">Item 5</li>
+</ul>
 <h2 id="sub-header">Hello Again.</h2>
 <p class="sub-paragraph">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -42,14 +56,14 @@
         var subHeader = document.getElementById("sub-header");
 
         // TODO: Set the text color of subHeader to blue
-        subHeader.style.backgroundColor = "blue";
+        subHeader.style.color = "blue";
 
         // TODO: Uncomment the next line and get all list items
         var listItems =  document.getElementsByTagName("li");
 
         // TODO: Set text color on every other list item to grey
         for (var i = 0; i < listItems.length; i+=2){
-            listItems[i].style.backgroundColor = "gray";
+            listItems[i].style.color = "gray";
         }
         // TODO: Set text color of li with dbid = 1 to blue
         for (var i = 0; i < listItems.length; i++){
@@ -58,6 +72,8 @@
             }
 
         }
+
+        document.querySelector('li["data-dbid"]="4"').style.color = "purple";
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
         var subParagraphs =  document.getElementsByClassName("sub-paragraph");
