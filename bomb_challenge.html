@@ -2,9 +2,154 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bomb Challenge</title>
 </head>
 <body>
+<section>
+    <textarea name="songs" id="songs" cols="30" rows="10"></textarea>
+    <button onclick="jackBox.play()">Start Jack Box</button>
+    <button onclick="jackBox.windUp()">Stop Jack Box</button>
+</section>
+<script>
 
+
+    // ================================= BOM CHALLENGES
+    //
+    //     CHALLENGE 1: Build a Jack-In-The-Box
+    //
+    //     Define an object called jackBox.
+    //
+    //         Include properties for...
+    //     triggered - whether or not the box has been sprung (should be false by default)
+    //     intervalId - set to null
+    //     play() - once called, if triggered is false, console.log one new element in the lyrics array every second
+    //     after the lyrics, stop the interval, set the triggered property to true, and alert POP!
+    //         windUp() - once called will stop the play() method and set triggered to false
+    //     lyrics - an array with the following elements:
+    //
+
+    var jackBox =
+        {
+            triggered: false,
+            lyrics: ["All a-...",
+                "-round the ...",
+                "mulberry...",
+                "bush, The...",
+                "monkey...",
+                "chased the...",
+                "wea-...",
+                "-sel...",
+                "The monkey...",
+                "stopped to...",
+                "pull up his...",
+                "sock,...",
+                "Pop!...",
+                "goes the...",
+                "wea-...",
+                "-sel."],
+            intervalId: null,
+            // playlist: function () {
+            //     // alert(this);
+            //     for (var index = 0; index < this.lyrics.length; index++) {
+            //         console.log(this.lyrics[index]);
+            //     }
+            // },
+            play: function () {
+                // add reference to jackBox object
+                var that = this;
+                if (!this.triggered) {
+                    // alert('1' + this);(;
+                    // this.intervalId = setInterval(this.playlist,1000);
+                    this.intervalId = setInterval(function () {
+                            // console.log(that);
+                        var str = "";
+                            for (var index = 0;
+                                 index < that.lyrics.length;
+                                 index++
+                            ) {
+                                console.log(that.lyrics[index]);
+                                str += "<br>" + that.lyrics[index];
+                                document.getElementById("songs").innerText = str;
+                            };
+
+
+                            //that.windUp();
+                        },
+                        1000
+                    )
+                    ; //
+                    //     play() - once called, if triggered is false, console.log one
+                    this.triggered = true;
+                    alert('POP!');
+                }
+            },
+
+            windUp: function () {
+                alert ('Done');
+                clearInterval(this.intervalId);
+                this.triggered = false;
+            }
+        }
+
+    jackBox.play();
+    // jackBox.windUp();
+
+    //     play() - once called, if triggered is false, console.log one new element in the lyrics array every second
+    //     after the lyrics, stop the interval, set the triggered property to true, and alert POP!
+    //         windUp() - once called will stop the play() method and set triggered to false
+    //     lyrics - an array with the following elements:
+
+    //}
+    //         "All a-...",
+    //             "-round the ...",
+    //             "mulberry...",
+    //             "bush, The...",
+    //             "monkey...",
+    //             "chased the...",
+    //             "wea-...",
+    //             "-sel...",
+    //             "The monkey...",
+    //             "stopped to...",
+    //             "pull up his...",
+    //             "sock,...",
+    //             "Pop!...",
+    //             "goes the...",
+    //             "wea-...",
+    //             "-sel."
+    //
+    //     Include methods for...
+    //
+    //
+    //     CHALLENGE 2: Build a Stop Watch
+    //
+    //     Define an object called stopWatch.
+    //
+    //         Include the following properties...
+    //
+    //     intervalId
+    //     count
+    //
+    //     Include the following methods...
+    //
+    //     start() - starts console logging an increasing count every second
+    //     pause() - pauses counter
+    //     reset() - stops counter and resets count to zero
+
+    soptWatch ={
+        intervalId: null,
+        count: 0,
+        start: function(){
+
+        },
+        pause: function(){
+
+        },
+        reset: function(){
+
+        }
+
+    }
+
+</script>
 </body>
 </html>
