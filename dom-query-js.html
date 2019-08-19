@@ -90,7 +90,7 @@
             }
         }
 
-        document.getElementById('btn3').addEventListener("click",  listener3, false);
+        document.getElementById('btn3').addEventListener("click", listener3, false);
 
         var listener4 = function (event) {
             // TODO: Uncomment the next line and get all elements with class name sub-paragraph test
@@ -147,8 +147,27 @@
 
 
         // When a user hits the "g" key, the background of the page should turn purple.
+
+        // document.getElementById('body').addEventListener("keyUp", function(){document.querySelector('body').style.color = "purple";});
+        document.querySelector('body').addEventListener("keyUp", function () {
+                document.querySelector('body').style.backgroundColor = "purple";
+            }
+        );
+
+        // document.querySelector("#button-3").addEventListener("click", function() {
+        //     for (var i = 0; i < listItems.length; i += 1) {
+        //         var dbidValue = listItems[i].getAttribute("data-dbid");
+        //         if (dbidValue === "1") {
+        //             listItems[i].style.color = "blue";
+        //         } else if (i % 2 === 0) {
+        //             listItems[i].style.color = "grey";
+        //         }
+        //     }
+        // });
+
         // Every time the enter key is pressed, increment and display a counter that shows the total number of times the enter key has been pressed.
         // When someone types 1, 2, 3 in a row, show an alert that says "You get a 50% discount!".
+
     })();
 </script>
 </body>
