@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title>Mapbox - 1</title>
+    <title>Mapbox - 4</title>
     <!-- Mapbox CSS -->
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
 
@@ -27,32 +27,15 @@
 <!-- Custom JS -->
 <script>
 
-    /** Washington */
-    mapboxgl.accessToken = mapboxToken;
-
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        zoom: 8,
-        center: [-77.0369, 38.9072]
+    // reverse geocode method from mapbox-geocoder-utils.js
+    //  21.2620 latitude and -157.8060
+    reverseGeocode({lng: -157.8060, lat: 21.2620}, mapboxToken).then(function(results) {
+        // logs the address for Diamond Head State Monument
+        console.log(results);
     });
 
 
-    /** Add pop up */
-    var lPopup = new mapboxgl.Popup()
-        .setHTML("<h3>Lincoln Memorial!</h3>");
-        // .addTo(map);
 
-    // marker.setPopup(linconPopup);
-
-
-    /** Set the marker */
-    var marker = new mapboxgl.Marker()
-    .setLngLat([-77.0502, 38.8893])
-    .setPopup(lPopup)
-    .addTo(map);
-
-    marker.togglePopup();
 
 
 
