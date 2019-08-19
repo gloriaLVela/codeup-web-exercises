@@ -24,37 +24,20 @@
 <!-- Custom JS -->
 <script>
 
-    /** Hometown */
+    /** Washington */
     mapboxgl.accessToken = mapboxToken;
 
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
-        zoom: 10,
-        center: [-100.3161, 25.6866]
+        zoom: 8,
+        center: [-77.0369, 38.9072]
     });
-    // var marker = new mapboxgl.Marker()
-    //     .setLngLat([[-100.3161, 25.6866])
-    //     .addTo(map);
-    /** New location */
 
-    function changeLocation() {
-
-        var newLocation = {
-            center: [-95.7129, 37.0902] //center: [-100.3161, 25.6866]
-        }
-        map.jumpTo(newLocation);
-        // marker.remove();
-    };
-
-    /** Set time out */
-    // setTimeout(changeLocation, 5000);
-
-    setTimeout( function(){
-        map.setStyle('mapbox://styles/mapbox/satellite-v9');
-        map.setZoom(3);
-        changeLocation();
-    }, 5000);
+    /** Set the marker */
+    var marker = new mapboxgl.Marker();
+    marker.setLngLat([-77.0502, 38.8893]);
+    marker.addTo(map);
 
 
 </script>
