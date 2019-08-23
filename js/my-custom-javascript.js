@@ -16,5 +16,14 @@ $(document).ready(function () {
     //     " <b>Multiple:</b> " + multipleValues.join( ", " ) );
     // console.log(multipleValues);
 
-$('.codeup').css('border', 'solid 1px red');
+    //$('.codeup').css('border', 'solid 1px red');
+    $('li').css('font-size', '20px');
+    $('h1, p, li').css('background', 'yellow');
+    var h1Value = $("h1").html();
+    alert(h1Value);
+
+    // var contents = $('#codeup').html();
+    // alert(contents);
+
+
 });
