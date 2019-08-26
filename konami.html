@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<img id="pizza" src="img/pizza.png" height="346" width="1323" style="display: none"/>
+<h1 id="currentKey" style="display: none"></h1>
+
+
+<script src="js/jquery.js"></script>
+<script>
+    "use strict";
+    /**
+     * 37 - left
+     * 38 - up
+     * 39 - right
+     * 40 down
+     * 65 a
+     * 66 b
+     * 13 enter
+     *
+     * ↑ ↑ ↓ ↓ ← → ← → b a
+     */
+     var key = "38384040373937396665";
+
+    $(document).keyup(function(event){
+        if (event.keyCode === 13){
+            var currentKey =  $("#currentKey").html();
+            if (currentKey === key){
+                alert('we have a winner, and you get pizza!');
+                $("#pizza").show();
+                $("#currentKey").html('');
+
+            }
+            else {
+                alert('try again!');
+                $("#currentKey").html('');
+                $("#pizza").hide();
+            }
+        } else {
+
+            $("#currentKey").append(event.keyCode);
+            $("#pizza").hide();
+        }
+
+    });
+</script>
+</body>
+</html>
