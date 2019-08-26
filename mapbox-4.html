@@ -1,0 +1,49 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox - 4</title>
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet'/>
+
+
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            height: 700px;
+        }
+    </style>
+    <script src="js/keys.js" type="text/javascript"></script>
+    <script src="js/mapbox-utils.js"></script>
+
+</head>
+<body>
+
+<div id='map' style='width: 100%; height: 600px;'></div>
+
+<!-- Custom JS -->
+<script>
+
+    /** Create an HTML file called mapbox-4.html centered on San Antonio that programmatically is re-centered over Whitefish, Montana using the coordinates from geocoding the physical address.
+     Use reverse geocoding with the reverseGeocode function to determine what is at 21.2620 latitude and -157.8060 longitude. (edited)
+
+     **/
+
+     // reverse geocode method from mapbox-geocoder-utils.js
+    //  21.2620 latitude and -157.8060
+    reverseGeocode({lng: -157.8060, lat: 21.2620}, mapboxToken).then(function(results) {
+        // logs the address for Diamond Head State Monument
+        console.log(results);
+    });
+
+
+
+
+
+
+</script>
+</body>
+</html>

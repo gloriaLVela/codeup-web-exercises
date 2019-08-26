@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JQuery exercise</title>
+</head>
+<body>
+<h1 class="codeup">Example Page</h1>
+<div>
+    <h3 id="tittleNew">JQuery</h3>
+    <p>This is a jquery exercise!</p>
+</div>
+<ul class="ul-class">
+    <li>Modifies the css</li>
+    <li>Modified the HTML</li>
+    <li>Does it modify functionality?</li>
+</ul>
+
+<p></p>
+
+<select id="single">
+    <option>Single</option>
+    <option>Single2</option>
+</select>
+
+
+    <select id="sel-multiple" multiple="multiple">
+        <option id="multiple1" class="codeup">Multiple</option>
+        <option id="multiple2">Multiple2</option>
+        <option id="multiple3" class="codeup">Multiple3</option>
+    </select>
+<p>This is a paragraph
+</p>
+<!-- INSERT HTML CODE SAMPLE HERE -->
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script>
+    "use strict";
+
+    $(document).ready(function () {
+        /**
+         * Add jQuery code that will change the background color of an h1 element when clicked.
+         * **/
+        $('h1').click(function () {
+            $(this).css('background-color', 'yellow');
+        })
+        /**
+
+         Make all paragraphs have a font size of 18px when they are double clicked.**/
+
+        $('p').dblclick(function (e) {
+            $(this).css('font-size', '18px');
+        });
+
+        /**
+
+         Set all li text color to red when the mouse is hovering; reset to black when it is not.
+         */
+
+        $('li').hover(
+            function() {
+                $(this).css('color', 'red');
+            },
+            function() {
+                $(this).css('color', 'black');
+            }
+        );
+    })
+</script>
+</body>
