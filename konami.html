@@ -7,9 +7,9 @@
 <body>
 <h1>Konami Code</h1>
 
-<img id="pizza" src="img/pizza.png" height="346" width="1323" style="display: none"/>
 <h1 id="currentKey" style="display: none"></h1>
 
+<img id="pizza" src="img/giphy.gif" height="480" width="480"/>
 
 <script src="js/jquery.js"></script>
 <script>
@@ -25,25 +25,30 @@
      *
      * ↑ ↑ ↓ ↓ ← → ← → b a
      */
-     var key = "38384040373937396665";
 
-    $(document).keyup(function(event){
-        if (event.keyCode === 13){
-            var currentKey =  $("#currentKey").html();
-            if (currentKey === key){
-                alert('we have a winner, and you get pizza!');
+    var key = "38384040373937396665";
+    var currentKey = "";
+
+    $(document).keyup(function (event) {
+
+        // Check if the user presses the return key
+        if (event.keyCode === 13) {
+            // Check the current key against the key
+            if (currentKey === key) {
+                alert('we have a winner!!');
                 $("#pizza").show();
                 $("#currentKey").html('');
 
-            }
-            else {
+            } else {
                 alert('try again!');
-                $("#currentKey").html('');
+                // You have to try again
+                currentKey = "";
                 $("#pizza").hide();
             }
         } else {
 
-            $("#currentKey").append(event.keyCode);
+            // Save the types key code
+            currentKey += event.keyCode;
             $("#pizza").hide();
         }
 
