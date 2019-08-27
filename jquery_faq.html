@@ -9,14 +9,20 @@
             visibility: hidden
         }
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="js/jquery.js"></script>
 </head>
 <body>
 <h1>10 FAQs about national parks</h1>
 
-<button>Toggle between classes</button>
+<button id="btn1" style="background-color: #0c5460; color: snow; font-size: larger">Toggle between classes</button>
+
+
+<div class="alert alert-light" role="alert"><h2>Do you want to register?</h2></div>
+
 <div>
-    <h1>Would you like to sign up for our newsletter? <span id="close" >X</span></h1>
+    <h1>Would you like to sign up for our newsletter? <span id="close">X</span></h1>
 </div>
 <dl>
     <dt>Who is the director of the National Park Service?</dt>
@@ -97,44 +103,128 @@
 </dd>
 </dl>
 
+<button id="btn2" style="background-color: #0c5460; color: snow; font-size: larger">Last LI</button>
+
+<h3 id="national-parks-heading">National Parks</h3>
+<ul id="national-parks">
+    <li>Arches</li>
+    <li>Badlands</li>
+    <li>Carlsbad Caverns</li>
+    <li>Denali</li>
+    <li>Everglades</li>
+</ul>
+<h3>State Parks of Texas</h3>
+<ul id="state-parks-texas">
+    <li>Abilene</li>
+    <li>Big Bend</li>
+    <li>Choke Canyon</li>
+    <li>Davis Mountains</li>
+    <li>Enchanted Rock</li>
+</ul>
 <script type="text/javascript" src="js/jquery.js"></script>
 
 <script>
-    (function(){
-    $(document).ready()
-    {
-        $("button").click(function () {
+    (function () {
+        $(document).ready()
+        {
+            $("#btn1").click(function () {
 
-            $('dd').toggleClass('invisible');
+                $('dd').toggleClass('invisible');
 
-        });
-        $('dt').click(function () {
-            $(this).css('background', 'yellow');
-        })
+            });
+            $('dt').click(function () {
+                $(this).css('background', 'yellow');
+            })
 
-        /**
-         * At the top of the page, add a div with two elements, an h1 that reads "Would you like to sign up for our newsletter?" and a span that has an 'x' in it. When the 'x' is clicked, hide the entire div element.**/
-        $('#close').click(function () {
-            $(this).parent().css('display', 'none');
-        })
+            /**
+             *
+             * Open the file named jquery_faq.html for editing. Commit all changes to GitHub.
 
-        /**
+             Under the FAQ, add 3 unordered lists like above.
+             Each list should contain a national park name in an h3 element, and a ul of 4 facts about the park.
 
-         The uls next to each h3 that contain facts about each park should start out hidden, and when the corresponding h3 is clicked, the display of the ul should be toggled with a sliding effect.**/
 
-        /**
+             Create a button that, when clicked, makes the last li in each ul have a yellow background.
 
-         After the user has been on the page for 8 seconds, an h2 should fade in that asks the user to register for the site.
+             **/
+            // The button btn2 was clicked
+            $('#btn2').click(function () {
+                // Travel thru the ul elements
+                $('ul').each(function (index, elem) {
+                    // elem is a ul item
+                    $(elem).children().last().css('background', 'yellow');
+                });
 
-         As always, make sure you are adding, committing and pushing to GitHub.
 
-         Bonus
+            })
 
-         Use a bootstrap alert for the dismissible message that shows on page load.
 
-         Use a bootstrap modal for the message that fades in after 8 seconds. You may find that you can use bootstrap's modal methods to achieve the fading effect.
-         */
-    }
+            /**
+
+             When any h3 is clicked, the lis underneath it should be bolded. Use font-weight: bold to achieve this.
+             **/
+
+            $('h3').click(function () {
+                $(this).next().children().css('font-weight', 'bold')
+            })
+
+            /**
+
+             When any list item is clicked, first li of the parent ul should have a font color of blue.
+             **cs
+             *
+             **/
+
+            $('li').click(function () {
+                $(this).parent().children().first().css('color', 'blue');
+            })
+
+            /**
+             * At the top of the page, add a div with two elements, an h1 that reads "Would you like to sign up for our newsletter?" and a span that has an 'x' in it. When the 'x' is clicked, hide the entire div element.**/
+            $('#close').click(function () {
+                $(this).parent().css('display', 'none');
+            })
+
+            /**
+
+             The uls next to each h3 that contain facts about each park should start out hidden, and when the corresponding h3 is clicked, the display of the ul should be toggled with a sliding effect.**/
+            // $('h3').click(function () {
+            //     $(this).next().slideToggle();
+            // })
+
+            /**
+
+             After the user has been on the page for 8 seconds, an h2 should fade in that asks the user to register for the site.
+             **/
+            // setTimeout((function(){
+            //     $('h2').fadeIn();
+            // }), 20000);
+            // setTimeout((function(){
+            //     $( "h1" ).fadeIn( "slow", function() {
+            //         // Animation complete
+            //     });
+            // }), 8000) });
+
+            // $('h1').show(10000); // 10 seconds
+
+            setTimeout(function () {
+                $('h2').fadeIn(1000);
+            }, 8000);
+
+
+            /**
+
+             As always, make sure you are adding, committing and pushing to GitHub.
+
+             Bonus
+
+             Use a bootstrap alert for the dismissible message that shows on page load.**/
+
+            /**
+
+             Use a bootstrap modal for the message that fades in after 8 seconds. You may find that you can use bootstrap's modal methods to achieve the fading effect.
+             */
+        }
 
     })();
 </script>
