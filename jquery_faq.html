@@ -13,8 +13,11 @@
 </head>
 <body>
 <h1>10 FAQs about national parks</h1>
-</body>
-<h1>Toggle between classes</h1>
+
+<button>Toggle between classes</button>
+<div>
+    <h1>Would you like to sign up for our newsletter? <span id="close" >X</span></h1>
+</div>
 <dl>
     <dt>Who is the director of the National Park Service?</dt>
     <dd class="invisible">
@@ -93,26 +96,47 @@
     </ul>
 </dd>
 </dl>
+
 <script type="text/javascript" src="js/jquery.js"></script>
 
 <script>
+    (function(){
     $(document).ready()
     {
-        $("h1").click(function () {
-            // var visibilityStatus = $('.invisible').css('visibility');
-            // // $(".visibility").css("color");
-            // console.log(visibilityStatus);
-            // if (visibilityStatus === "hidden") {
-            //     $('.invisible').css('visibility', 'visible')
-            // } else {
-            //     $('.invisible').css('visibility', 'hidden')
-            // }
+        $("button").click(function () {
+
             $('dd').toggleClass('invisible');
 
         });
         $('dt').click(function () {
             $(this).css('background', 'yellow');
         })
+
+        /**
+         * At the top of the page, add a div with two elements, an h1 that reads "Would you like to sign up for our newsletter?" and a span that has an 'x' in it. When the 'x' is clicked, hide the entire div element.**/
+        $('#close').click(function () {
+            $(this).parent().css('display', 'none');
+        })
+
+        /**
+
+         The uls next to each h3 that contain facts about each park should start out hidden, and when the corresponding h3 is clicked, the display of the ul should be toggled with a sliding effect.**/
+
+        /**
+
+         After the user has been on the page for 8 seconds, an h2 should fade in that asks the user to register for the site.
+
+         As always, make sure you are adding, committing and pushing to GitHub.
+
+         Bonus
+
+         Use a bootstrap alert for the dismissible message that shows on page load.
+
+         Use a bootstrap modal for the message that fades in after 8 seconds. You may find that you can use bootstrap's modal methods to achieve the fading effect.
+         */
     }
+
+    })();
 </script>
+</body>
 </html>
