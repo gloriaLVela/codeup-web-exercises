@@ -154,8 +154,6 @@
                     // elem is a ul item
                     $(elem).children().last().css('background', 'yellow');
                 });
-
-
             })
 
 
@@ -188,28 +186,20 @@
             /**
 
              The uls next to each h3 that contain facts about each park should start out hidden, and when the corresponding h3 is clicked, the display of the ul should be toggled with a sliding effect.**/
-            // $('h3').click(function () {
-            //     $(this).next().slideToggle();
-            // })
+            $('h3').next().hide();
+            $('h3').click(function () {
+                $(this).next().slideToggle();
+            })
 
             /**
 
              After the user has been on the page for 8 seconds, an h2 should fade in that asks the user to register for the site.
              **/
-            // setTimeout((function(){
-            //     $('h2').fadeIn();
-            // }), 20000);
-            // setTimeout((function(){
-            //     $( "h1" ).fadeIn( "slow", function() {
-            //         // Animation complete
-            //     });
-            // }), 8000) });
+            $('h2').hide();
 
-            // $('h1').show(10000); // 10 seconds
-
-            setTimeout(function () {
-                $('h2').fadeIn(1000);
-            }, 8000);
+            setTimeout((function(){
+                $('h2').fadeIn();
+            }), 8000);
 
 
             /**

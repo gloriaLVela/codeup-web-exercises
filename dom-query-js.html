@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>DOM: Query and Modify</title>
+    <script src="js/jquery.js"></script>
 </head>
 <body>
 
@@ -42,6 +43,7 @@
 <button id="btn2">Button 2</button>
 <button id="btn3">Button 3</button>
 <button id="btn4">Button 4</button>
+
 <script>
     (function () {
         'use strict';
@@ -149,8 +151,14 @@
         // When a user hits the "g" key, the background of the page should turn purple.
 
         // document.getElementById('body').addEventListener("keyUp", function(){document.querySelector('body').style.color = "purple";});
-        document.querySelector('body').addEventListener("keyUp", function () {
-                document.querySelector('body').style.backgroundColor = "purple";
+        // $( "#target" ).keyup(function() {
+        //     alert( "Handler for .keyup() called." );
+        // });
+        $('body').keyup(function () {
+                //document.querySelector('body').style.backgroundColor = "purple";
+            console.log(this);
+            $('body').css('background-color', "purple"); // Very light grey
+                // We had to use [] syntax since the property name has a dash
             }
         );
 
