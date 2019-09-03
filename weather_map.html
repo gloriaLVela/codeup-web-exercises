@@ -16,23 +16,28 @@
 
     <style>
         /* give the map a defined size */
-        body{
+        body {
             background-color: #B4DBFA;
         }
 
         td {
             background-color: #F2F2F2;
         }
+
         #map {
             width: 90%;
-            height: 70vh;
+            height: 350px;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div><h1>Weather Application</h1></div>
-    <div><h2 id="currentLocation">San Antonio</h2></div>
+    <div><h2>Weather Application</h2></div>
+    <div><h3 id="currentLocation">San Antonio</h3><br>
+        <label for="lng">Lng<input type="text" id="lng"></label>
+        <label for="lat">Lat<input type="text" id="lat"></label><br>
+        <input id="search" type="button" value="Search">
+    </div>
     <div id="forecast" class="row"></div>
     <!-- define HTML element for map -->
     <div id='map'></div>
@@ -48,141 +53,136 @@
 <!-- script for working with the map -->
 <script>
 
-    // initial setting of map location
-    var searchPlace = 'San Antonio';
+    $('document').ready()
+    {
 
-    // selecting the zoom dropdown input
-    var select = document.querySelector('#zoom-level');
+        // initial setting of map location
 
+        let weatherIndex = [
+            "clear-day", "clear-night", "rain", "snow", "sleet", "wind", "fog", "cloudy", "partly-cloudy-day", "partly-cloudy-night", "hail", "thunderstorm", "tornado"];
 
-    // a function to place all markers on a map
-    function placeAllMarkers(restaurants, map) {
-        restaurants.forEach(function (restaurant) {
-            placeMarker(restaurant, map);
-        });
-    }
+        let weatherIcon = [
+            "icon/SVG/Sun.svg",
+            "icon/SVG/Moon.svg",
+            "icon/SVG/Cloud-Rain.svg",
+            "icon/SVG/Cloud-Snow.svg",
+            "icon/SVG/Cloud-Rain.svg",
+            "icon/SVG/Cloud-Wind.svg",
+            "icon/SVG/Cloud-Fog.svg",
+            "icon/SVG/Cloud-Fog.svg",
+            "icon/SVG/Cloud-Sun.svg",
+            "icon/SVG/Cloud-Moon.svg",
+            "icon/SVG/Cloud-Hail.svg",
+            "icon/SVG/Cloud-Tornado.svg",
+            "icon/SVG/Cloud-Tornado.svg"
+        ];
 
-    // a function to place an individual popup and marker on a map
-    function placeMarker(restaurantObject, map) {
-        return geocode(restaurantObject.address, mapboxToken).then(function (coordinates) {
-            var popup = new mapboxgl.Popup()
-                .setHTML('<h3>' + restaurantObject.name + '</h3><p>' + restaurantObject.message + '</p>');
-            new mapboxgl.Marker()
-                .setLngLat(coordinates)
-                .setPopup(popup)
-                .addTo(map);
-        });
-    }
-
-    // a function to initially create a map
-    function drawMap(location) {
-        return map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 10,
-            center: location
-        });
-    }
-
-    // // a function to add an event listener to the map
-    // function addSelectEventListener(map) {
-    //     select.addEventListener('change', function() {
-    //         map.setZoom(select.value);
-    //     });
-    // }
-
-    // // a function to move map arbitrarily over the three markers
-    // function resetMapOverMarkers(map, restaurants) {
-    //     geocode(restaurants[1].address, mapboxToken).then(function(results) {
-    //         map.setZoom(15);
-    //         map.setCenter(results);
-    //     });
-    // }
-
-    // set the token for Mapbox API
-    mapboxgl.accessToken = mapboxToken;
-
-    // do the things!
-    geocode(searchPlace, mapboxToken).then(function (results) {
-        var map = drawMap(results);
-        //addSelectEventListener(map);
-        //placeAllMarkers(restaurants, map);
-        //resetMapOverMarkers(map, restaurants);
-    });
-
-</script>
-
-<!-- Script working with the weather api -->
-<script>
-
-    let weatherIndex = [
-        "clear-day", "clear-night", "rain", "snow", "sleet", "wind", "fog", "cloudy", "partly-cloudy-day", "partly-cloudy-night", "hail", "thunderstorm", "tornado"];
-
-    let weatherIcon = [
-        "icon/SVG/Sun.svg",
-        "icon/SVG/Moon.svg",
-        "icon/SVG/Cloud-Rain.svg",
-        "icon/SVG/Cloud-Snow.svg",
-        "icon/SVG/Cloud-Rain.svg",
-        "icon/SVG/Cloud-Wind.svg",
-        "icon/SVG/Cloud-Fog.svg",
-        "icon/SVG/Cloud-Fog.svg",
-        "icon/SVG/Cloud-Sun.svg",
-        "icon/SVG/Cloud-Moon.svg",
-        "icon/SVG/Cloud-Hail.svg",
-        "icon/SVG/Cloud-Tornado.svg",
-        "icon/SVG/Cloud-Tornado.svg"
-    ];
-    // the  geocode method from mapbox-geocoder-utils.js
-    let newLocation = "";
-
-    geocode("San Antonio Texas 78205", mapboxToken).then(function (result) {
-        /**Create a popup with the name of the restaurant.
-         //      **/
-        newLocation = result;
-        // console.log(result);
-        let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + newLocation[1] + "," + newLocation[0];
-        // console.log(weatherKey);
-        let newData = " <table id=\"forecast\" ><tr>";
-        $.get(weatherKey).done(function (weatherData) {
-            console.log(weatherData);
-            // Get the three day weather
-            // console.log(weatherData["daily"].data);
-
-            let weatherForecast = weatherData["daily"].data;
-
-            for (let i = 0; i < 3; i++) {
-                // console.log(weatherForecast[i]["icon"]);
-                // console.log(weatherIndex.indexOf(weatherForecast[i]["icon"]));
-                // console.log(weatherIcon);
-                newData += '<td><div class="card text-center">'
-                newData += '<div class="card-body">  <h3 class="card-title">' + weatherForecast[i]["apparentTemperatureHigh"] + '/' + weatherForecast[i]["apparentTemperatureLow"]
-                newData += '</h3> <p class="card-text"> <img src="' + weatherIcon[weatherIndex.indexOf(weatherForecast[i]["icon"])] + '"> </p>'
-                newData += ' <div class="card-footer text-muted">'
-                newData += weatherForecast[i]["summary"] + '</div>'
-                newData += ' <div class="card-footer text-muted"><strong>Humidity: </strong>'
-                newData += weatherForecast[i]["humidity"] + '</div>';
-                newData += ' <div class="card-footer text-muted"><strong>Wind:</strong>'
-                newData += weatherForecast[i]["windSpeed"] + '</div>';
-                newData += ' <div class="card-footer text-muted"><strong>Pressure</strong>'
-                newData += weatherForecast[i]["pressure"] + '</div>';
-                newData += '</div> </div></td>'
-            }
-            console.log(newData);
-            newData += "</tr></table>";
-            $("#forecast").replaceWith(newData);
-        });
-
-
-        drawMap(newLocation);
+        // var searchLocation = $('#currentLocation').innerHTML
+        //
+        // geocode(searchLocation, mapboxToken).then(function (result) {
+        //     let newLocation = "";
+        //     newLocation = result;
+        //     getWeatherInfo(newLocation)
+        //     drawMap(newLocation);
+        //     //console.log("geocode");
+        //     // });
         // });
-    });
 
-    function newDate(objDate) {
-        var dateObject = new Date(1551736889 * 1000);
-        console.log(dateObject.toString());
+        // a function to initially create a map
+        var searchLocation = $('#currentLocation').html();
+        console.log(searchLocation);
+
+        geocode(searchLocation, mapboxToken).then(function (result) {
+            let newLocation = "";
+            newLocation = result;
+            getWeatherInfo(newLocation)
+            drawMap(newLocation);
+            console.log("geocode");
+            // });
+        });
+
+        function drawMap(location) {
+
+            mapboxgl.accessToken = mapboxToken;
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v9',
+                zoom: 10,
+                center: location
+            });
+            return map;
+        }
+
+
+        $('#search').click(function () {
+            let currentLocation = [];
+            currentLocation.push($('#lng').val());
+            currentLocation.push($('#lat').val());
+            //Get the name of the location
+
+            // reverse geocode method from mapbox-geocoder-utils.js
+            var lng = $('#lng').val();
+            var lat = $('#lat').val();
+            // lng= -98.4861;
+            // lat: 29.4260;
+            reverseGeocode({lng: lng, lat: lat}, mapboxToken).then(function (results) {
+
+                // logs the address for The Alamo(
+                //console.log(results);
+                $('#currentLocation').html(results);
+
+                getWeatherInfo(currentLocation);
+                drawMap(currentLocation);
+                // $('#currentLocation').innerHTML = results;
+            })
+
+        });
+
+
+        // }
+
+
+        // the  geocode method from mapbox-geocoder-utils.js
+
+
+        function getWeatherInfo(location) {
+
+            // console.log(result);
+            let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + location[1] + "," + location[0];
+            // console.log(weatherKey);
+            let newData = " <table id=\"forecast\" ><tr>";
+            $.get(weatherKey).done(function (weatherData) {
+                // console.log(weatherData);
+                // Get the three day weather
+                // console.log(weatherData["daily"].data);
+
+                let weatherForecast = weatherData["daily"].data;
+
+                for (let i = 0; i < 3; i++) {
+                    // console.log(weatherForecast[i]["icon"]);
+                    // console.log(weatherIndex.indexOf(weatherForecast[i]["icon"]));
+                    // console.log(weatherIcon);
+                    newData += '<td>'
+                    newData += '<div>  <h3 style="text-align: center">' + weatherForecast[i]["apparentTemperatureHigh"] + '/' + weatherForecast[i]["apparentTemperatureLow"]
+                    newData += '</h3> <p style="align-content: center"> <img src="' + weatherIcon[weatherIndex.indexOf(weatherForecast[i]["icon"])] + '"> </p>'
+                    newData += ' <div class="card-footer text-muted">'
+                    newData += weatherForecast[i]["summary"] + '</div>'
+                    newData += ' <div class="card-footer text-muted"><strong>Humidity: </strong>'
+                    newData += weatherForecast[i]["humidity"] + '</div>';
+                    newData += ' <div class="card-footer text-muted"><strong>Wind:</strong>'
+                    newData += weatherForecast[i]["windSpeed"] + '</div>';
+                    newData += ' <div class="card-footer text-muted"><strong>Pressure</strong>'
+                    newData += weatherForecast[i]["pressure"] + '</div>';
+                    newData += ' </div></td>'
+                }
+                // console.log(newData);
+                newData += "</tr></table>";
+                $("#forecast").replaceWith(newData);
+            });
+
+        }
+
     }
-
 </script>
 </body>
 </html>
