@@ -31,16 +31,30 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <div><h2>Weather Application</h2></div>
-    <div><h3 id="currentLocation">San Antonio</h3><br>
+<div class="container-fluid">
+    <div class="row"><h2>Weather Application</h2></div>
+    <div class="row">
         <label for="lng">Lng<input type="text" id="lng"></label>
-        <label for="lat">Lat<input type="text" id="lat"></label><br>
+        <label for="lat">Lat<input type="text" id="lat"></label>
+        <br>
         <input id="search" type="button" value="Search">
     </div>
-    <div id="forecast" class="row"></div>
+    <div class="row">
+        <label for="newPlace">New location<input type="text" id="newPlace"></label>
+        <br>
+        <input id="searchNewLocation" type="button" value="Search">
+    </div>
+    <div class="row">
+        <h3 id="currentLocation">San Antonio</h3><br>
+        <div id="forecast" class="row"></div>
+    </div>
+
     <!-- define HTML element for map -->
-    <div id='map'></div>
+    <div class="row">
+        <div id='map'></div>
+    </div>
+
+
 </div>
 
 <!-- the required script for Mapbox -->
@@ -52,6 +66,8 @@
 
 <!-- script for working with the map -->
 <script>
+    "use strict";
+
 
     $('document').ready()
     {
@@ -77,29 +93,21 @@
             "icon/SVG/Cloud-Tornado.svg"
         ];
 
-        // var searchLocation = $('#currentLocation').innerHTML
-        //
-        // geocode(searchLocation, mapboxToken).then(function (result) {
-        //     let newLocation = "";
-        //     newLocation = result;
-        //     getWeatherInfo(newLocation)
-        //     drawMap(newLocation);
-        //     //console.log("geocode");
-        //     // });
-        // });
 
         // a function to initially create a map
         var searchLocation = $('#currentLocation').html();
         console.log(searchLocation);
+        getLocation(searchLocation);
 
-        geocode(searchLocation, mapboxToken).then(function (result) {
-            let newLocation = "";
-            newLocation = result;
-            getWeatherInfo(newLocation)
-            drawMap(newLocation);
-            console.log("geocode");
-            // });
-        });
+        function getLocation(newLocation) {
+            geocode(searchLocation, mapboxToken).then(function (result) {
+                let newLocation = "";
+                //console.log(newLocation);
+                newLocation = result;
+                getWeatherInfo(newLocation)
+                drawMap(newLocation);
+            });
+        };
 
         function drawMap(location) {
 
@@ -114,31 +122,6 @@
         }
 
 
-        $('#search').click(function () {
-            let currentLocation = [];
-            currentLocation.push($('#lng').val());
-            currentLocation.push($('#lat').val());
-            //Get the name of the location
-
-            // reverse geocode method from mapbox-geocoder-utils.js
-            var lng = $('#lng').val();
-            var lat = $('#lat').val();
-            // lng= -98.4861;
-            // lat: 29.4260;
-            reverseGeocode({lng: lng, lat: lat}, mapboxToken).then(function (results) {
-
-                // logs the address for The Alamo(
-                //console.log(results);
-                $('#currentLocation').html(results);
-
-                getWeatherInfo(currentLocation);
-                drawMap(currentLocation);
-                // $('#currentLocation').innerHTML = results;
-            })
-
-        });
-
-
         // }
 
 
@@ -150,21 +133,15 @@
             // console.log(result);
             let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + location[1] + "," + location[0];
             // console.log(weatherKey);
-            let newData = " <table id=\"forecast\" ><tr>";
+            let newData = " <table id=\"forecast\" style='width:100%'><tr style=\"align-content: center\">";
             $.get(weatherKey).done(function (weatherData) {
-                // console.log(weatherData);
-                // Get the three day weather
-                // console.log(weatherData["daily"].data);
 
                 let weatherForecast = weatherData["daily"].data;
 
                 for (let i = 0; i < 3; i++) {
-                    // console.log(weatherForecast[i]["icon"]);
-                    // console.log(weatherIndex.indexOf(weatherForecast[i]["icon"]));
-                    // console.log(weatherIcon);
                     newData += '<td>'
                     newData += '<div>  <h3 style="text-align: center">' + weatherForecast[i]["apparentTemperatureHigh"] + '/' + weatherForecast[i]["apparentTemperatureLow"]
-                    newData += '</h3> <p style="align-content: center"> <img src="' + weatherIcon[weatherIndex.indexOf(weatherForecast[i]["icon"])] + '"> </p>'
+                    newData += '</h3> <img src="' + weatherIcon[weatherIndex.indexOf(weatherForecast[i]["icon"])] + '">'
                     newData += ' <div class="card-footer text-muted">'
                     newData += weatherForecast[i]["summary"] + '</div>'
                     newData += ' <div class="card-footer text-muted"><strong>Humidity: </strong>'
@@ -181,6 +158,41 @@
             });
 
         }
+
+
+        $('#search').click(function () {
+            let currentLocation = [];
+            currentLocation.push($('#lng').val());
+            currentLocation.push($('#lat').val());
+            //Get the name of the location
+
+            // reverse geocode method from mapbox-geocoder-utils.js
+            var lng = $('#lng').val();
+            var lat = $('#lat').val();
+            // lng= -98.4861;
+            // lat: 29.4260;
+            reverseGeocode({lng: lng, lat: lat}, mapboxToken).then(function (results) {
+
+                //
+                $('#currentLocation').html(results);
+
+                getWeatherInfo(currentLocation);
+                drawMap(currentLocation);
+            })
+
+        });
+
+        $('#searchNewLocation').click(function(){
+            let newCity = $('#newPlace').val();
+            geocode(newCity, mapboxToken).then(function (result) {
+                let newLocation = "";
+                //console.log(newLocation);
+                newLocation = result;
+                getWeatherInfo(newLocation)
+                drawMap(newLocation);
+            });
+
+        });
 
     }
 </script>
