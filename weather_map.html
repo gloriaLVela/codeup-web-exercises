@@ -13,6 +13,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        /*#map { position:absolute; top:0; bottom:0; width:100%; }*/
+    </style>
 
     <style>
         /* give the map a defined size */
@@ -34,6 +41,8 @@
             height: 350px;
         }
     </style>
+
+
 </head>
 <body>
 <div class="container-fluid">
@@ -57,6 +66,7 @@
     <!-- define HTML element for map -->
     <div class="row">
         <div id='map'></div>
+        <pre id='coordinates' class='coordinates'></pre>
     </div>
 
 
@@ -102,15 +112,37 @@
         // a function to initially create a map
         var searchLocation = $('#currentLocation').html();
         console.log(searchLocation);
-        getLocation(searchLocation);
+        var currentMap = getLocation(searchLocation);
+
+        var coordinates = document.getElementById('coordinates');
+        console.log(coordinates);
+        var currentCoordinates = $('#coordinates').html();
+
+        console.log(currentCoordinates);
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat(coordinates)
+            .addTo(currentMap);
+
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+        }
+
+        marker.on('dragend', onDragEnd);
 
         function getLocation(newLocation) {
             geocode(searchLocation, mapboxToken).then(function (result) {
                 let newLocation = "";
-                //console.log(newLocation);
                 newLocation = result;
+                console.log(newLocation);
+                // $('#currentCoordinates').html(results);
                 getWeatherInfo(newLocation)
-                drawMap(newLocation);
+                var currentMap =  drawMap(newLocation);
+                return currentMap;
             });
         };
 
@@ -125,13 +157,6 @@
             });
             return map;
         }
-
-
-        // }
-
-
-        // the  geocode method from mapbox-geocoder-utils.js
-
 
         function getWeatherInfo(location) {
 
