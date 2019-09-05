@@ -23,7 +23,12 @@
         td {
             background-color: #F2F2F2;
         }
-
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
         #map {
             width: 90%;
             height: 350px;
@@ -45,7 +50,7 @@
         <input id="searchNewLocation" type="button" value="Search">
     </div>
     <div class="row">
-        <h3 id="currentLocation">San Antonio</h3><br>
+        <h3 id="currentLocation">San Antonio</h3>
         <div id="forecast" class="row"></div>
     </div>
 
@@ -139,17 +144,14 @@
                 let weatherForecast = weatherData["daily"].data;
 
                 for (let i = 0; i < 3; i++) {
+                    var forecast = (Math.round(weatherForecast[i]["apparentTemperatureHigh"]) + '&deg;' + '/' + Math.round(weatherForecast[i]["apparentTemperatureLow"]) + '&deg;').trim();
                     newData += '<td>'
-                    newData += '<div>  <h3 style="text-align: center">' + weatherForecast[i]["apparentTemperatureHigh"] + '/' + weatherForecast[i]["apparentTemperatureLow"]
-                    newData += '</h3> <img src="' + weatherIcon[weatherIndex.indexOf(weatherForecast[i]["icon"])] + '">'
-                    newData += ' <div class="card-footer text-muted">'
-                    newData += weatherForecast[i]["summary"] + '</div>'
-                    newData += ' <div class="card-footer text-muted"><strong>Humidity: </strong>'
-                    newData += weatherForecast[i]["humidity"] + '</div>';
-                    newData += ' <div class="card-footer text-muted"><strong>Wind:</strong>'
-                    newData += weatherForecast[i]["windSpeed"] + '</div>';
-                    newData += ' <div class="card-footer text-muted"><strong>Pressure</strong>'
-                    newData += weatherForecast[i]["pressure"] + '</div>';
+                    newData += '<div class="center"><h3>' + forecast + '</h3></div>'
+                    newData += '<div class="center"> <img src="' + weatherIcon[weatherIndex.indexOf(weatherForecast[i]["icon"])] + '"> </div>'
+                    newData += ' <div class="center">' + weatherForecast[i]["summary"] + '</div>'
+                    newData += ' <div class="center"><strong>Humidity: </strong>' + weatherForecast[i]["humidity"] + '</div>';
+                    newData += ' <div class="center"><strong>Wind:</strong>' + weatherForecast[i]["windSpeed"] + '</div>';
+                    newData += ' <div class="center"><strong>Pressure</strong>' + weatherForecast[i]["pressure"] + '</div>';
                     newData += ' </div></td>'
                 }
                 // console.log(newData);
