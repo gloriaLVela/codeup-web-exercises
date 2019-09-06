@@ -37,29 +37,29 @@
 
 <h1 id="currentLocation">San Antonio</h1>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12" style="background-color: #0f6674">
-            <div class="row">
-                <div class="col-3">
-                    <label for="zoomLevel">Zoom level<select name="zoomLevel" id="zoomLevel"></select></label>
-                </div>
-                <div class="col-3">
-                    <label for="lng">Lng<input type="text" id="lng"></label>
-                    <label for="lat">Lat<input type="text" id="lat"></label>
-                    <br>
-                    <input id="search" type="button" value="Search">
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-12" style="background-color: #0f6674">-->
+    <!--            <div class="row">-->
+    <!--                <div class="col-3">-->
+    <!--                    <label for="zoomLevel">Zoom level<select name="zoomLevel" id="zoomLevel"></select></label>-->
+    <!--                </div>-->
+    <!--                <div class="col-3">-->
+    <!--                    <label for="lng">Lng<input type="text" id="lng"></label>-->
+    <!--                    <label for="lat">Lat<input type="text" id="lat"></label>-->
+    <!--                    <br>-->
+    <!--                    <input id="search" type="button" value="Search">-->
 
-                </div>
-                <div class="col-3">
-                    <label for="newPlace">New location<input type="text" id="newPlace"></label>
-                    <br>
-                    <input id="searchNewLocation" type="button" value="Search">
+    <!--                </div>-->
+    <!--                <div class="col-3">-->
+    <!--                    <label for="newPlace">New location<input type="text" id="newPlace"></label>-->
+    <!--                    <br>-->
+    <!--                    <input id="searchNewLocation" type="button" value="Search">-->
 
-                </div>
+    <!--                </div>-->
 
-            </div>
-        </div>
-    </div>
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
     <div class="row">
 
         <div id="forecast" class="row">
@@ -104,6 +104,10 @@
 
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet'
+      href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css'
+      type='text/css'/>
 
 <!-- Custom JS -->
 <script>
@@ -111,6 +115,7 @@
     var $j = jQuery.noConflict();
 
     $(document).ready(function () {
+
 
         let weatherIndex = [
             "clear-day", "clear-night", "rain", "snow", "sleet", "wind", "fog", "cloudy", "partly-cloudy-day", "partly-cloudy-night", "hail", "thunderstorm", "tornado"];
@@ -132,6 +137,10 @@
         ];
         // Map set to San Antonio
 
+        /**
+         *  Initial display set to San Antonio
+         * **/
+
         mapboxgl.accessToken = mapboxToken;
         var map = new mapboxgl.Map({
             container: 'map',
@@ -146,16 +155,35 @@
             .setLngLat([-98.4916, 29.4252])
             .addTo(map);
 
+        getWeatherInfo([-98.4916, 29.4252]);
+
+
+        function displayPage(location) {
+            var currentCenter = {
+                lng: location[0],
+                lat: location[1]
+            }
+            reverseGeocode(currentCenter, mapboxToken).then(function (results) {
+
+                //
+                console.log(results);
+                $('#currentLocation').html(results);
+                getWeatherInfo(location);
+                drawMap(location);
+
+            });
+        }
+
         function drawMap(location) {
 
             mapboxgl.accessToken = mapboxToken;
-            var map = new mapboxgl.Map({
+            map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v9',
                 zoom: 10,
                 center: location
             });
-            var marker = new mapboxgl.Marker({
+            marker = new mapboxgl.Marker({
                 draggable: true
             })
                 .setLngLat(location)
@@ -165,61 +193,56 @@
             return map;
         }
 
+        /**
+         *
+         * Marker functionality
+         * */
 
-        function onDragEnd() {
+        function onDragEnd(e) {
+            // Drag the marker
             var lngLat = marker.getLngLat();
-            coordinates.style.display = 'block';
-            coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            map.flyTo({
+                center: [
+                    lngLat.lng,
+                    lngLat.lat]
+            });
+            displayPage([lngLat.lng, lngLat.lat]);
         }
 
         marker.on('dragend', onDragEnd);
 
-        // Change the zoom level
-        function zoomMap(zoomLevel) {
-            map.setZoom(zoomLevel);
-        }
 
-        function onLoadFunction() {
+        /**
+         *
+         * Search textbox functionality
+         * */
+        var searchNewLocation = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        });
 
-            let innerHTML = "";
-            let currentId = ""
-            for (let i = 0; i <= 24; i++) {
-                currentId = "option" + i;
-                innerHTML += '<option id=currentId value="' + i + '" >' + i + '</option>';
-            }
+        map.addControl(searchNewLocation);
 
-            $('#zoomLevel').html(innerHTML);
-            $('#zoomLevel').change(function () {
-                zoomMap($(this).val());
-            });
-            // $('#option9').attr('selected', 'selected');
+        searchNewLocation.on('result', function (e) {
+            //call new location
 
-            $('#zoomLevel option[value=9]').attr('selected', 'selected');
+            displayPage(e.result["center"]);
+        })
 
-        }
 
-// Add zoom and rotation controls to the map.
+        // Add zoom and rotation controls to the map.
         map.addControl(new mapboxgl.NavigationControl());
-        onLoadFunction();
-
-        function getLocation(newLocation) {
-            geocode(searchLocation, mapboxToken).then(function (result) {
-                let newLocation = "";
-                newLocation = result;
-                console.log(newLocation);
-                // $('#currentCoordinates').html(results);
-                getWeatherInfo(newLocation)
-                var currentMap = drawMap(newLocation);
-                return currentMap;
-            });
-        };
 
 
-        //
+
+        /**
+         *
+         *  Get the weather information
+         *
+         * */
+
         function getWeatherInfo(location) {
-            // console.log(location);
-            // console.log(result);
-            let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + location[1] + "," + location[0];
+             let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + location[1] + "," + location[0];
             // console.log(weatherKey);
 
             $.get(weatherKey).done(function (weatherData) {
@@ -244,8 +267,28 @@
 
         }
 
+        /** Button functions -- removed to add the mapbox functionality
+         *
+         *
+         // Change the zoom level
+         function zoomMap(zoomLevel) {
+            map.setZoom(zoomLevel);
+        }
 
-        $('#search').click(function () {
+
+         function getLocation(newLocation) {
+            geocode(searchLocation, mapboxToken).then(function (result) {
+                let newLocation = "";
+                newLocation = result;
+                console.log(newLocation);
+                // $('#currentCoordinates').html(results);
+                getWeatherInfo(newLocation)
+                var currentMap = drawMap(newLocation);
+                return currentMap;
+            });
+        };
+
+         $('#search').click(function () {
             let currentLocation = [];
             currentLocation.push($('#lng').val());
             currentLocation.push($('#lat').val());
@@ -269,7 +312,7 @@
 
         });
 
-        $('#searchNewLocation').click(function () {
+         $('#searchNewLocation').click(function () {
             let newCity = $('#newPlace').val();
             geocode(newCity, mapboxToken).then(function (result) {
                 let newLocation = "";
@@ -281,6 +324,7 @@
             });
 
         });
+         */
     })
 </script>
 </body>
