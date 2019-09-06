@@ -22,18 +22,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-    <!--
-    how to get the css filter for svgs
-
-https://codepen.io/sosuke/pen/Pjoqqp
--->
     <!-- Your custom styles go here -->
     <style>
         #map {
             /* the width and height may be set to any size */
             width: 100%;
-            height: 400px;
+            height: 700px;
         }
     </style>
     <script src="js/keys.js"></script>
@@ -43,7 +37,29 @@ https://codepen.io/sosuke/pen/Pjoqqp
 
 <h1 id="currentLocation">San Antonio</h1>
 <div class="container">
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-12" style="background-color: #0f6674">-->
+    <!--            <div class="row">-->
+    <!--                <div class="col-3">-->
+    <!--                    <label for="zoomLevel">Zoom level<select name="zoomLevel" id="zoomLevel"></select></label>-->
+    <!--                </div>-->
+    <!--                <div class="col-3">-->
+    <!--                    <label for="lng">Lng<input type="text" id="lng"></label>-->
+    <!--                    <label for="lat">Lat<input type="text" id="lat"></label>-->
+    <!--                    <br>-->
+    <!--                    <input id="search" type="button" value="Search">-->
 
+    <!--                </div>-->
+    <!--                <div class="col-3">-->
+    <!--                    <label for="newPlace">New location<input type="text" id="newPlace"></label>-->
+    <!--                    <br>-->
+    <!--                    <input id="searchNewLocation" type="button" value="Search">-->
+
+    <!--                </div>-->
+
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
     <div class="row">
 
         <div id="forecast" class="row">
@@ -218,6 +234,7 @@ https://codepen.io/sosuke/pen/Pjoqqp
         map.addControl(new mapboxgl.NavigationControl());
 
 
+
         /**
          *
          *  Get the weather information
@@ -225,7 +242,7 @@ https://codepen.io/sosuke/pen/Pjoqqp
          * */
 
         function getWeatherInfo(location) {
-            let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + location[1] + "," + location[0];
+             let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + location[1] + "," + location[0];
             // console.log(weatherKey);
 
             $.get(weatherKey).done(function (weatherData) {
@@ -250,7 +267,64 @@ https://codepen.io/sosuke/pen/Pjoqqp
 
         }
 
+        /** Button functions -- removed to add the mapbox functionality
+         *
+         *
+         // Change the zoom level
+         function zoomMap(zoomLevel) {
+            map.setZoom(zoomLevel);
+        }
 
+
+         function getLocation(newLocation) {
+            geocode(searchLocation, mapboxToken).then(function (result) {
+                let newLocation = "";
+                newLocation = result;
+                console.log(newLocation);
+                // $('#currentCoordinates').html(results);
+                getWeatherInfo(newLocation)
+                var currentMap = drawMap(newLocation);
+                return currentMap;
+            });
+        };
+
+         $('#search').click(function () {
+            let currentLocation = [];
+            currentLocation.push($('#lng').val());
+            currentLocation.push($('#lat').val());
+            //Get the name of the location
+
+            // reverse geocode method from mapbox-geocoder-utils.js
+            var lng = $('#lng').val();
+            var lat = $('#lat').val();
+            console.log(lng);
+            console.log(lat);
+            // console.log(currentLocation);
+            reverseGeocode({lng: lng, lat: lat}, mapboxToken).then(function (results) {
+
+                //
+                $('#currentLocation').html(results);
+                // console.log(results);
+                getWeatherInfo(currentLocation);
+                drawMap(currentLocation);
+
+            })
+
+        });
+
+         $('#searchNewLocation').click(function () {
+            let newCity = $('#newPlace').val();
+            geocode(newCity, mapboxToken).then(function (result) {
+                let newLocation = "";
+                //console.log(newLocation);
+                newLocation = result;
+                $('#currentLocation').html(newCity);
+                getWeatherInfo(newLocation)
+                drawMap(newLocation);
+            });
+
+        });
+         */
     })
 </script>
 </body>
