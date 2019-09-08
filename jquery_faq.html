@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>10 FAQs about national parks</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
     <style>
 
         .invisible {
             visibility: hidden
         }
     </style>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="js/jquery.js"></script>
+
 </head>
 <body>
 <h1>10 FAQs about national parks</h1>
@@ -19,11 +20,29 @@
 <button id="btn1" style="background-color: #0c5460; color: snow; font-size: larger">Toggle between classes</button>
 
 
-<div class="alert alert-light" role="alert"><h2>Do you want to register?</h2></div>
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--     aria-hidden="true"> -->
 
-<div>
-    <h1>Would you like to sign up for our newsletter? <span id="close">X</span></h1>
+
+<!--</div>-->
+
+<div class="modal fade" id="overlay">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Hello</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to register?</p>
+            </div>
+        </div>
+    </div>
 </div>
+<!--<div>-->
+<!--    <h1>Would you like to sign up for our newsletter? <span id="close">X</span></h1>-->
+<!--</div>-->
+<div id="register" class="alert alert-info mt-2"  role="alert">Would you like to sign up for our newsletter? <span id="close">X</span></div>
 <dl>
     <dt>Who is the director of the National Park Service?</dt>
     <dd class="invisible">
@@ -121,7 +140,10 @@
     <li>Davis Mountains</li>
     <li>Enchanted Rock</li>
 </ul>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 
 <script>
     (function () {
@@ -154,8 +176,6 @@
                     // elem is a ul item
                     $(elem).children().last().css('background', 'yellow');
                 });
-
-
             })
 
 
@@ -186,7 +206,6 @@
             })
 
             /**
-
              The uls next to each h3 that contain facts about each park should start out hidden, and when the corresponding h3 is clicked, t
              he display of the ul should be toggled with a sliding effect.**/
             // $('h3').click(function () {
@@ -197,22 +216,19 @@
 
              After the user has been on the page for 8 seconds, an h2 should fade in that asks the user to register for the site.
              **/
+            // $('#register').hide();
+            //
             // setTimeout((function(){
-            //     $('h2').fadeIn();
-            // }), 20000);
-            // setTimeout((function(){
-            //     $( "h1" ).fadeIn( "slow", function() {
-            //         // Animation complete
-            //     });
-            // }), 8000) });
+            //     $('#register').fadeIn();
+            // }), 8000);
 
-            // $('h1').show(10000); // 10 seconds
+            //  $('#register').delay(8000).fadeIn();
 
-            setTimeout(function () {
-                $('h2').fadeIn(1000);
+            // $('#overlay').modal('hide');
+
+            setTimeout(function() {
+                $('#overlay').modal('show');
             }, 8000);
-
-
             /**
 
              As always, make sure you are adding, committing and pushing to GitHub.

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Mapbox Map</title>
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet'/>
+
+    <!-- Bootstrap -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!--
+    how to get the css filter for svgs
+
+https://codepen.io/sosuke/pen/Pjoqqp
+-->
+    <!-- Your custom styles go here -->
+    <style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+    <script src="js/keys.js"></script>
+    <script src="js/mapbox-utils.js"></script>
+</head>
+<body>
+
+<h1 id="currentLocation">San Antonio</h1>
+<div class="container">
+
+    <div class="row">
+
+        <div id="forecast" class="row">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- The HTML element that serves as the Mapbox container -->
+            <div id='map'></div>
+            <pre id='coordinates' class='coordinates'></pre>
+        </div>
+    </div>
+</div>
+
+<style>
+    .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+    }
+</style>
+<!-- Bootstrap -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+<!-- Your custom JS goes here -->
+
+<!-- Mapbox JS -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet'
+      href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css'
+      type='text/css'/>
+
+<!-- Custom JS -->
+<script>
+    "use strict";
+    var $j = jQuery.noConflict();
+
+    $(document).ready(function () {
+
+
+        let weatherIndex = [
+            "clear-day", "clear-night", "rain", "snow", "sleet", "wind", "fog", "cloudy", "partly-cloudy-day", "partly-cloudy-night", "hail", "thunderstorm", "tornado"];
+
+        let weatherIcon = [
+            "icon/SVG/Sun.svg",
+            "icon/SVG/Moon.svg",
+            "icon/SVG/Cloud-Rain.svg",
+            "icon/SVG/Cloud-Snow.svg",
+            "icon/SVG/Cloud-Rain.svg",
+            "icon/SVG/Cloud-Wind.svg",
+            "icon/SVG/Cloud-Fog.svg",
+            "icon/SVG/Cloud-Fog.svg",
+            "icon/SVG/Cloud-Sun.svg",
+            "icon/SVG/Cloud-Moon.svg",
+            "icon/SVG/Cloud-Hail.svg",
+            "icon/SVG/Cloud-Tornado.svg",
+            "icon/SVG/Cloud-Tornado.svg"
+        ];
+        // Map set to San Antonio
+
+        /**
+         *  Initial display set to San Antonio
+         * **/
+
+        mapboxgl.accessToken = mapboxToken;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 10,
+            center: [-98.4916, 29.4252]
+        });
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([-98.4916, 29.4252])
+            .addTo(map);
+
+        getWeatherInfo([-98.4916, 29.4252]);
+
+
+        function displayPage(location) {
+            var currentCenter = {
+                lng: location[0],
+                lat: location[1]
+            }
+            reverseGeocode(currentCenter, mapboxToken).then(function (results) {
+
+                //
+                console.log(results);
+                $('#currentLocation').html(results);
+                getWeatherInfo(location);
+                drawMap(location);
+
+            });
+        }
+
+        function drawMap(location) {
+
+            marker = new mapboxgl.Marker({
+                draggable: true
+            })
+                .setLngLat(location)
+                .addTo(map);
+
+            marker.on('dragend', onDragEnd);
+            return map;
+        }
+
+        /**
+         *
+         * Marker functionality
+         *
+         * */
+
+        function onDragEnd(e) {
+            // Drag the marker
+            var lngLat = marker.getLngLat();
+            map.flyTo({
+                center: [
+                    lngLat.lng,
+                    lngLat.lat]
+            });
+            displayPage([lngLat.lng, lngLat.lat]);
+        }
+
+        marker.on('dragend', onDragEnd);
+
+
+        /**
+         *
+         * Search textbox functionality
+         * */
+        var searchNewLocation = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        });
+
+        map.addControl(searchNewLocation);
+
+        searchNewLocation.on('result', function (e) {
+            //call new location
+
+            displayPage(e.result["center"]);
+        })
+
+
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
+
+
+        /**
+         *
+         *  Get the weather information
+         *
+         * */
+
+        function getWeatherInfo(location) {
+            let weatherKey = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkKey + "/" + location[1] + "," + location[0];
+            // console.log(weatherKey);
+
+            $.get(weatherKey).done(function (weatherData) {
+                let newData = " <table id=\"forecast\" style='width:100%'><tr style=\"align-content: center\">";
+                let weatherForecast = weatherData["daily"].data;
+
+                for (let i = 0; i < 3; i++) {
+                    var forecast = (Math.round(weatherForecast[i]["apparentTemperatureHigh"]) + '&deg;' + '/' + Math.round(weatherForecast[i]["apparentTemperatureLow"]) + '&deg;').trim();
+                    newData += '<td>'
+                    newData += '<div class="center"><h3>' + forecast + '</h3></div>'
+                    newData += '<div class="center"> <img src="' + weatherIcon[weatherIndex.indexOf(weatherForecast[i]["icon"])] + '"> </div>'
+                    newData += ' <div class="center">' + weatherForecast[i]["summary"] + '</div>'
+                    newData += ' <div class="center"><strong>Humidity: </strong>' + weatherForecast[i]["humidity"] + '</div>';
+                    newData += ' <div class="center"><strong>Wind:</strong>' + weatherForecast[i]["windSpeed"] + '</div>';
+                    newData += ' <div class="center"><strong>Pressure</strong>' + weatherForecast[i]["pressure"] + '</div>';
+                    newData += ' </div></td>'
+                }
+                // console.log(newData);
+                newData += "</tr></table>";
+                $("#forecast").replaceWith(newData);
+            });
+
+        }
+
+
+    })
+</script>
+</body>
+</html>

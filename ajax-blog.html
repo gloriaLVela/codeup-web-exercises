@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="js/jquery.js"></script>
+</head>
+<body class="container">
+<table id="blog" width="100%">
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script>
+    (function () {
+        "use strict";
+        // TODO: Create an ajax GET request for /data/blog.json
+        //
+        $.get("data/blog.json", {
+            limit: 10,
+            offset: 20
+        }).done(function (data) {
+            // do something with the data
+            console.log(data);
+            let newData = "";
+            data.forEach(function (item) {
+                newData += '<div class="card text-center">'
+            newData += '<div class="card-body">  <h5 class="card-title">' + item["title"] + ' ' + item["date"]
+             newData += '</h5> <p class="card-text"> '+ item["content"] + '</p>'
+                     newData += ' <div class="card-footer text-muted">'
+                 newData +=  item["categories"].join(',') + '</div>'
+                newData += '</div> </div>'
+            });
+            $("#blog").append(newData);
+        });
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // JavaScript provides the ability to natively determine if the window has finished loading using the window.onload event handler.
+
+        window.onload = function() {
+        alert( 'The page has finished loading!' );
+    }
+
+    // We can use jQuery to select the document object and add an event listener called ready. This event listener will fire as soon as the DOM is ready to be manipulated, before all the images have completed downloading.
+
+    $(document).ready(function() {
+        alert( 'The DOM has finished loading!' );
+    });
+
+    // Though there are many types of selectors available through jQuery, we will be concentrating on the basic (and most commonly used) selectors:
+    //
+    // Selector	            Syntax	                        Description
+    // ID Selector	        #id	                            Selects a single element with the given id attribute.
+    // Class Selector	    .class	                        Selects all elements with the given class.
+    // Element Selector	    element	                        Selects all elements with the given tag name.
+    // Multiple Selector	selector1[, selector2[, ...]]	Selects the combined results of all the specified selectors.
+    // All Selector	        *	                            Selects all elements.
+
+    $('selector')
+
+
+    // Next, let's add some JavaScript that uses jQuery to alert the contents of the h1 element.
+
+    var contents = $('#codeup').html();
+    alert(contents);
+
+
+
+</script>
+</body>
+</html>

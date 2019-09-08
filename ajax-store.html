@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="js/jquery.js"></script>
+
+</head>
+<body>
+
+<h1>My Tool Store</h1>
+
+<table id="products" class="table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Categories</th>
+    </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+</table>
+
+<input type="button" value="Reload Page" onClick="reload">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script>
+    (function () {
+        "use strict";
+        // TODO: Create an ajax GET request for /data/inventory.json
+        $.get("data/inventory.json", {
+            limit: 10,
+            offset: 20
+        }).done(function (data) {
+            // do something with the data
+            // console.log(data);
+            let newData = "";
+            data.forEach(function (item) {
+                newData += '<tr><td>' + item["title"] + '</td><td>' + item["quantity"] + '</td><td>';
+                newData += item["price"] + '</td><td>'
+                if (typeof item["categories"] === "object") {
+                    newData += item["categories"].join(',') + '</td></tr>';
+                } else {
+                    newData += 'nbsp;</td><tr>';
+                }
+            });
+            $("#products").append(newData);
+        });
+
+        // TODO: Take the data from inventory.json and append it to the products table
+        //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+        //             its contents and fields
+        //       HINT: You will want to target #insertProducts for your new HTML elements
+    })();
+</script>
+
+</body>
+</html>
