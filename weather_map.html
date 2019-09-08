@@ -160,13 +160,6 @@ https://codepen.io/sosuke/pen/Pjoqqp
 
         function drawMap(location) {
 
-            mapboxgl.accessToken = mapboxToken;
-            map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v9',
-                zoom: 10,
-                center: location
-            });
             marker = new mapboxgl.Marker({
                 draggable: true
             })
