@@ -101,7 +101,7 @@ let list = '<ul>';
 
 /**
  * for (let element of iterable) {
-    // ...
+    // this is a test
 }
  * **/
 
