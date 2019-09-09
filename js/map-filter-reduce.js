@@ -45,7 +45,7 @@ const users = [
  2. Use .filter to create an array of user objects where each user object has at least 3 languages in the languages array.
  **/
 
-const user_multi_lingual= users.filter(user => user.languages.length >= 3);
+const user_multi_lingual = users.filter(user => user.languages.length >= 3);
 
 // console.log(user_multi_lingual);
 
@@ -53,7 +53,7 @@ const user_multi_lingual= users.filter(user => user.languages.length >= 3);
  3. Use .map to create an array of strings where each element is a user's email address
  **/
 
-const email_list = users.map(user=> user.email);
+const email_list = users.map(user => user.email);
 
 // console.log(email_list);
 
@@ -62,9 +62,9 @@ const email_list = users.map(user=> user.email);
  4. Use .reduce to get the total years of experience from the list of users. Once you get the total of years you can use the result to calculate the average.
  **/
 
-let average = users.reduce((total, user) =>{
+let average = users.reduce((total, user) => {
     return total + user.yearsOfExperience;
-}, 0)/users.length;
+}, 0) / users.length;
 
 
 // console.log(average);
@@ -75,8 +75,8 @@ let average = users.reduce((total, user) =>{
  **/
 
 
-let largest_email = users.reduce((currentEmail, user) =>{
-    return (currentEmail.length > user.email.length)?currentEmail:user.email;
+let largest_email = users.reduce((currentEmail, user) => {
+    return (currentEmail.length > user.email.length) ? currentEmail : user.email;
 });
 
 // console.log(largest_email);
@@ -85,9 +85,28 @@ let largest_email = users.reduce((currentEmail, user) =>{
  6. Use .reduce to get the list of user's names in a single string. Example: Your instructors are: ryan, luis, zach, fernando, justin.
  */
 
-let instructors_list = users.reduce((currentList, user) =>{
+let instructors_list = users.reduce((currentList, user) => {
     return currentList + user.email + ',';
 }, "");
 
 instructors_list = instructors_list.substr(0, instructors_list.length - 1);
-console.log(instructors_list);
+
+
+// let language_list = users.reduce((languageList, user) => {
+//     return languageList += user.languages + ",";
+// }, "").split(',').filter((value, index, self) => {
+//     // console.log(value);
+//     // console.log(index);
+//     // console.log(self);
+//     return self.indexOf(value) === index && value.length > 0;
+// });
+
+
+
+let currentLanguageList = users.map(user => user.languages).reduce((currentList, currentLanguage) => currentList.concat(currentLanguage), []).filter(function (value, index, self) {
+    return self.indexOf(value) === index;
+});
+
+
+console.log(currentLanguageList);
+
