@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/keys.js"></script>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script>
+    function getProfileOld(userID) {
+        // fetch(`https://github.com/${userID}`, {headers: {'Authorization': githubToken}}).then(res => res.json)
+        // /users/:username/events
+        //https://cors-anywhere.herokuapp.com/https://github.com/users/${userID}/events`
+
+        fetch('https://cors-anywhere.herokuapp.com/https://api.github.com/users/' + userID + '/events/public', {headers: {'Authorization': githubKey}})
+            .then((response) => {
+                console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                // build html
+                console.log(data);
+                let pushedEvents = data.filter(event => event["type"] === "PushEvent");
+                console.log(pushedEvents);
+                let repoList = pushedEvents.map((item) => item["created_at"]);
+                console.log(repoList);
+
+                let maxDate = repoList.reduce((lastDate, currentDate) => {
+                    return (lastDate > currentDate) ? lastDate : currentDate
+                }, 0);
+
+                console.log(maxDate);
+
+            })
+            .catch(console.log);
+
+
+    };
+
+    function getProfile(userID) {
+        // fetch(`https://github.com/${userID}`, {headers: {'Authorization': githubToken}}).then(res => res.json)
+        // /users/:username/events
+        //https://cors-anywhere.herokuapp.com/https://github.com/users/${userID}/events`
+
+        fetch('https://cors-anywhere.herokuapp.com/https://api.github.com/users/' + userID + '/events/public', {headers: {'Authorization': githubKey}})
+            .then((response) => {
+                //console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                // build html
+                // console.log(data);
+                let pushedEvents = data.filter(event => event["type"] === "PushEvent");
+                //console.log(pushedEvents);
+                return pushedEvents;
+            })
+            .then((pushedEvents) => {
+                let repoList = pushedEvents.map((item) => item["created_at"]);
+                //console.log(repoList);
+                return repoList;
+            })
+            .then((repoList) => {
+                let maxDate = repoList.reduce((lastDate, currentDate) => {
+                    return (lastDate > currentDate) ? lastDate : currentDate
+                }, 0);
+
+                console.log(maxDate);
+
+            })
+            .catch(console.log);
+
+
+    };
+
+    getProfile('gloriaLVela');
+</script>
+
+</body>
+</html>
