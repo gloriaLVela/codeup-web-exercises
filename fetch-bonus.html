@@ -108,13 +108,15 @@
                 .then(homeWorldData => {
                     console.log(homeWorldData.name);
                     // console.log(data["homeworld"]);
+                    console.log(`Luke's planet ${homeWorldData.name}`);
                     return homeWorldData.name;
                 })
                 .catch(error => console.error(error));
         })
         .catch(error => console.error(error));
 
-    console.log(myPromise);
+    //const lukePlanet = myPromise();
+    //console.log(`Luke's planet ${lukePlanet}`);
 
     /**
 
@@ -146,7 +148,7 @@
                     return total;
                 }, 0) / 3;
 
-                console.log(average);
+                console.log(`Average hours pushes ${average.toFixed(2)}`);
             })
             .catch(console.log);
 
@@ -164,7 +166,7 @@
 
      [
      {
-        "name": "Rey",
+        "name": "Leia Organa",
         "coolness": 9
       },
      {
@@ -219,10 +221,11 @@
         fetch("data/star-chars.json")
             .then((response) => {
                 //console.log(response);
+
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
+                //console.log(data);
                 let names = data.map(data => data.name);
                 fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/`)
                     .then(response => {
@@ -231,28 +234,56 @@
                         // return returnData;
                         return response.json();
                     })
-                    .then (currentData => {
-                        console.log(currentData.results)
+                    .then(currentData => {
+                        // console.log(currentData.results);
+                        const currentArray = currentData.results;
+                        //console.log(currentArray);
+                        const homeWorld = currentArray.filter(function (starChar) {
+                            if (names.indexOf(starChar.name) >= 0) {
+                                return starChar;
+                            }
+                        }, []);
+                        const currentURL = homeWorld.map(data => 'https://cors-anywhere.herokuapp.com/' + data.homeworld);
+                        // console.log(currentURL);
+                        return currentURL;
                     })
-
-                // let requests = names.map(name => fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people`));
-                // Promise.all(requests)
-                //     .then(responses => {
-                //         // all responses are resolved successfully
-                //         for(let response of responses) {
-                //             alert(`${response.url}: ${response.status}`); // shows 200 for every url
-                //         }
-                //
-                //         return responses;
-                //     })
-                //     // map array of responses into array of response.json() to read their content
-                //     .then(responses => Promise.all(responses.map(r => r.json())))
-                //     // all JSON answers are parsed: "users" is the array of them
-                //     .then(users => users.forEach(user => alert(user.name)));
+                    .then(urlHomeworld => {
+                        console.log(urlHomeworld);
+                        //let homeworldNames = [];
+                        urlHomeworld.forEach(urlAddress => {
+                            fetch(urlAddress)
+                                .then(response => {
+                                    const homeData = response.json();
+                                    console.log(homeData);
+                                    return homeData;
+                                })
+                                .then (planetInfo => console.log(planetInfo.name))
+                    })
+                return 0;
 
             })
-            .catch('error');
-    };
+
+        // let requests = names.map(name => fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people`));
+        // Promise.all(requests)
+        //     .then(responses => {
+        //         // all responses are resolved successfully
+        //         for(let response of responses) {
+        //             alert(`${response.url}: ${response.status}`); // shows 200 for every url
+        //         }
+        //
+        //         return responses;
+        //     })
+        //     // map array of responses into array of response.json() to read their content
+        //     .then(responses => Promise.all(responses.map(r => r.json())))
+        //     // all JSON answers are parsed: "users" is the array of them
+        //     .then(users => users.forEach(user => alert(user.name)));
+
+    }
+
+    )
+    .catch('error');
+    }
+    ;
 
     getData();
 
