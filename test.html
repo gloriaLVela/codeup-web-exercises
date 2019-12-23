@@ -1,13 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Test Javascript</title>
-    <script src="js/promises.js"></script>
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-<a href="http://www.yahoo.com" id="search-link">Web Search</a>
+<script>
 
+    if (true) {
+        let x = 5;
+    }
+    console.log(typeof x);
+
+    function sayHello(name) {
+        return 'Hello, ' + name + '!';
+    };
+
+
+    const sayHello1 = (name) => { 'Hello, ' + name + '!' };
+
+    // #2
+    const sayHello2 = name => { 'Hello, ' + name + '!' };
+
+
+    // #3
+    const sayHello3 = (name) => `Hello, ${name}!`;
+
+
+    console.log(sayHello());
+
+    console.log(sayHello1());
+    console.log(sayHello2());
+    console.log(sayHello3());
+
+    // let numbers = [1, 2, 3, 4, 5];
+    // numbers.map(n => n * 3)
+    //
+    // console.log(numbers);
+
+    const isDivisibleBy3 = n => n % 3 === 0;
+
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    console.log(numbers.filter(isDivisibleBy3));
+    console.log(numbers);
+</script>
 
 </body>
 </html>
