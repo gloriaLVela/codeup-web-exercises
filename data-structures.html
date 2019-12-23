@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Structures</title>
+</head>
+<body>
+<script>
+    /**
+     *
+     * Fibonacci
+     */
+    var cache = {};
+
+    function fibonacciMemozation(number) {
+
+        if (number < 1)
+            return 0;
+
+        if (number <= 2)
+            return 1;
+
+        if (number in cache)
+            return cache[number];
+
+        var value = fibonacciMemozation(number- 1) + fibonacciMemozation(number - 2);
+
+        cache[number] = value;
+
+        return value;
+        console.log(value);
+    }
+    //console.clear();
+    //console.log(fibonacciMemozation(5));
+    //    console.log(fibonacciMemozation(50));
+
+    coins = [1,2,5];
+    //amount = 15;
+
+    function minCoins(coinArray, amount){
+        if (coinArray[amount] > 0) {
+            return coinArray[amount];
+        }
+        ////console.log('minCoins');
+        let index = 1;
+        let minCount = amount;
+        while((amount - index) > 1) {
+            if ((minCoins(coinArray, amount-index) + minCoins(coinArray, index)) < minCount ){
+                minCount = (minCoins(coinArray, amount-index) + minCoins(coinArray, index));
+            }
+            index ++;
+        }
+
+        return minCount;
+    }
+
+    /**
+     *  coin problem
+     * @param amount
+     * @returns {number|*}
+     */
+    function coinProblem(amount){
+        if (coins.indexOf(amount) >= 0) {
+            return 1;
+        }
+        if (amount > coins[coins.length-1]){
+            coinCount = new Array(amount+1).fill(0);
+        } else {
+            coinCount = new Array(coins[coins.length-1]+1).fill(0);
+        }
+
+        // Set up
+        for (let i = 0; i < coins.length; i++){
+            coinCount[coins[i]] = 1;
+        }
+        // Two coins
+        for (let i = 0; i < coins.length; i++){
+            if (coinCount[coins[i] * 2] == 0) {
+                coinCount[coins[i] * 2] = 2;
+            }
+
+        }
+        return  minCoins(coinCount, amount);
+    }
+
+    console.clear();
+    console.log(coinProblem(2));
+    console.log(coinProblem(3));
+    console.log(coinProblem(4));
+    console.log(coinProblem(15));
+</script>
+</body>
+</html>
