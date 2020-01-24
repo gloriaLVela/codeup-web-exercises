@@ -23,32 +23,34 @@
         if (number in cache)
             return cache[number];
 
-        var value = fibonacciMemozation(number- 1) + fibonacciMemozation(number - 2);
+        var value = fibonacciMemozation(number - 1) + fibonacciMemozation(number - 2);
 
         cache[number] = value;
 
         return value;
         console.log(value);
     }
+
     //console.clear();
     //console.log(fibonacciMemozation(5));
     //    console.log(fibonacciMemozation(50));
 
-    coins = [1,2,5];
+    coins = [1, 2, 5];
+
     //amount = 15;
 
-    function minCoins(coinArray, amount){
+    function minCoins(coinArray, amount) {
         if (coinArray[amount] > 0) {
             return coinArray[amount];
         }
         ////console.log('minCoins');
         let index = 1;
         let minCount = amount;
-        while((amount - index) > 1) {
-            if ((minCoins(coinArray, amount-index) + minCoins(coinArray, index)) < minCount ){
-                minCount = (minCoins(coinArray, amount-index) + minCoins(coinArray, index));
+        while ((amount - index) > 1) {
+            if ((minCoins(coinArray, amount - index) + minCoins(coinArray, index)) < minCount) {
+                minCount = (minCoins(coinArray, amount - index) + minCoins(coinArray, index));
             }
-            index ++;
+            index++;
         }
 
         return minCount;
@@ -59,28 +61,28 @@
      * @param amount
      * @returns {number|*}
      */
-    function coinProblem(amount){
+    function coinProblem(amount) {
         if (coins.indexOf(amount) >= 0) {
             return 1;
         }
-        if (amount > coins[coins.length-1]){
-            coinCount = new Array(amount+1).fill(0);
+        if (amount > coins[coins.length - 1]) {
+            coinCount = new Array(amount + 1).fill(0);
         } else {
-            coinCount = new Array(coins[coins.length-1]+1).fill(0);
+            coinCount = new Array(coins[coins.length - 1] + 1).fill(0);
         }
 
         // Set up
-        for (let i = 0; i < coins.length; i++){
+        for (let i = 0; i < coins.length; i++) {
             coinCount[coins[i]] = 1;
         }
         // Two coins
-        for (let i = 0; i < coins.length; i++){
+        for (let i = 0; i < coins.length; i++) {
             if (coinCount[coins[i] * 2] == 0) {
                 coinCount[coins[i] * 2] = 2;
             }
 
         }
-        return  minCoins(coinCount, amount);
+        return minCoins(coinCount, amount);
     }
 
     console.clear();
@@ -88,6 +90,43 @@
     console.log(coinProblem(3));
     console.log(coinProblem(4));
     console.log(coinProblem(15));
+
+    /**
+     * Selection sort
+     */
+
+    function selectionSort(arrayNumbers) {
+        let n = arrayNumbers.length;
+
+    }
+
+    /**
+     * Happy numbers
+     */
+
+    function isHappy(n) {
+        let unique_num = new Array();
+        let notExists = true;
+        while (notExists) {
+            let value = 0;
+            while (n > 0) {
+                value += Math.pow(n % 10, 2);
+                n /= 10;
+            }
+            n = value;
+            if (unique_num.indexOf(n) >= 0){
+                notExists = false;
+                break;
+            }
+            unique_num.push(n);
+        }
+
+        return n == 1;
+    }
+
+    console.log(isHappy(19));
+     console.log(isHappy(4));
+    console.log(isHappy(0));
 </script>
 </body>
 </html>
